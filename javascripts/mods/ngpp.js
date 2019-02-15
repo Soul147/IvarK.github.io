@@ -29,12 +29,6 @@ function getMetaDimensionMultiplier (tier) {
   multiplier = multiplier.times(getQCReward(6))
   
   if (multiplier.lt(1)) multiplier = new Decimal(1)
-  if (player.dilation.active || player.galacticSacrifice) {
-    multiplier = Decimal.pow(10, Math.pow(multiplier.log10(), 0.75))
-    if (player.dilation.upgrades.includes(11)) {
-      multiplier = Decimal.pow(10, Math.pow(multiplier.log10(), 1.05))
-    }
-  }
   return multiplier;
 }
 
@@ -615,7 +609,7 @@ function quantumReset(force, auto, challid, implode=false) {
 	player = {
 		money: new Decimal(10),
 		tickSpeedCost: new Decimal(1000),
-		tickspeed: new Decimal(player.aarexModifications.newGameExpVersion?500:1000),
+		tickspeed: new Decimal(player.achievements.includes("r26")&&player.mods.ac?100:player.aarexModifications.newGameExpVersion?500:1000),
 		tickBoughtThisInf: resetTickBoughtThisInf(),
 		firstCost: new Decimal(10),
 		secondCost: new Decimal(100),
@@ -936,7 +930,8 @@ function quantumReset(force, auto, challid, implode=false) {
 		quantum: player.quantum,
 		old: player.masterystudies ? inQC(0) : undefined,
 		dontWant: player.masterystudies ? true : undefined,
-		aarexModifications: player.aarexModifications
+		aarexModifications: player.aarexModifications,
+		mods: player.mods
 	};
 	if (player.challenges.includes("challenge1")) player.money = new Decimal(100)
 	if (player.achievements.includes("r37")) player.money = new Decimal(1000)

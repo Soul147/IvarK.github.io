@@ -1125,7 +1125,7 @@ function fillAll() {
 
 //v1.99872
 function maxAllDilUpgs() {
-	while (buyDilationUpgrade(11,true)) {}
+	if(player.meta) while (buyDilationUpgrade(11,true)) {}
 	while (buyDilationUpgrade(3,true)) {}
 	while (buyDilationUpgrade(1,true)) {}
 	while (buyDilationUpgrade(2,true)) {}
