@@ -10,6 +10,7 @@ function getDimensionBoostPower(next, focusOn) {
   if (player.boughtDims) ret += player.timestudy.ers_studies[4] + (next ? 1 : 0)
   if (player.galacticSacrifice ? (player.galacticSacrifice.upgrades.includes(23) && player.currentChallenge != "challenge15") || focusOn == "g23" : false) ret *= galUpgrade23()
   if (player.infinityUpgrades.includes("resetMult")&&player.galacticSacrifice) ret *= 1.2 + 0.05 * player.infinityPoints.max(1).log(10)
+  if (!player.boughtDims&&player.achievements.includes("r25")&&player.mods.ac) ret = ret*1.01
   if (!player.boughtDims&&player.achievements.includes("r101")) ret = ret*1.01
   if (player.timestudy.studies.includes(83)) ret = Decimal.pow(1.0004, player.totalTickGained).times(ret);
   if (player.timestudy.studies.includes(231)) ret = Decimal.pow(Math.max(player.resets, 0), 0.3).times(ret)
@@ -205,7 +206,8 @@ function softReset(bulk) {
       quantum: player.quantum,
       old: player.old,
       dontWant: player.dontWant,
-      aarexModifications: player.aarexModifications
+      aarexModifications: player.aarexModifications,
+	  mods: player.mods
   };
   if (player.currentChallenge == "challenge10" || player.currentChallenge == "postc1") {
       player.thirdCost = new Decimal(100)

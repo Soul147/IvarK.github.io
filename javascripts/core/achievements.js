@@ -141,6 +141,10 @@ const allAchievements = {
   ng3p36 : "I can’t get my multipliers higher!",
   ng3p37 : "No dilation means no production.",
   ng3p38 : "I don't want you to live anymore.",
+  ngt11 : "This is a Christian Server",
+  ngt12 : "Dilation was a bad idea",
+  ngt13 : "Faster than Keemstar",
+  ngt14 : "error",
   s11 : "The first one's always free",
   s12 : "Just in case",
   s13 : "It pays to have respect",
@@ -187,7 +191,7 @@ const secretAchievementTooltips = {
     s32 : "Get a fastest infinity or eternity time of less than or equal to 0.001 seconds.",
     s33 : "Click on the donate link.",
     s34 : "Respec with an empty study tree.",
-    s35 : "Buy single tickspeed 1,000,000 times.",
+    s35 : "Buy single tickspeed 100,000 times.",
     s36 : "Have nothing happen while you were away.",
     s37 : "Follow instructions.",
     s38 : "Get all your dimension bulk buyers to 1e100.",
@@ -270,10 +274,14 @@ function giveAchievement(name) {
 
 function updateAchievements() {
 	var amount = 0
-	for (var i=1; i<18; i++) {
+	for (var i=1; i<19; i++) {
 		var shown=false
 		var rowid=i
-		if (i>14) {
+		if (i >= 18) {
+			var shown = player.mods.ngt;
+			rowid = "ngt" + (i - 17)
+		}
+		else if (i>14&&i<18) {
 			var shown=!(!player.masterystudies)
 			rowid="ng3p"+(i-14)
 		} else if (i>13) {
@@ -297,6 +305,7 @@ function updateAchievements() {
 					else if (realAchNum==41) realAchNum=76
 				}
 				if (player.masterystudies&&achNum>150) var achId="ng3p"+(achNum-140)
+				if (player.mods.ngt&&achNum>150) var achId="ngt"+(achNum-170)
 				else if (player.exdilation&&achNum>140) {
 					if (achNum==145) var achId="ngpp13"
 					else if (achNum==147) var achId="ngpp18"
@@ -306,9 +315,9 @@ function updateAchievements() {
 				var name=allAchievements[achId]
 				if (player.achievements.includes(achId)) {
 					n++
-					document.getElementById(name).className = "achievementunlocked"
+					if(ge(name)) document.getElementById(name).className = "achievementunlocked"
 				} else {
-					document.getElementById(name).className = "achievementlocked"
+					if(ge(name)) document.getElementById(name).className = "achievementlocked"
 				}
 			}
 			if (n == 8) {
@@ -342,7 +351,12 @@ function updateAchievements() {
 	}
 
 	player.achPow = Decimal.pow(player.aarexModifications.newGameMinusMinusVersion ? 5 : 1.5, amount)
-	document.getElementById("achmultlabel").textContent = "Current achievement multiplier on each Dimension: " + player.achPow.toFixed(1) + "x"
+	
+	// Tetrated achievement multiplier from AC++
+	
+	if(player.mods.ac);
+	
+	document.getElementById("achmultlabel").textContent = "Current achievement multiplier on each Dimension: " + getFullExpansion(player.achPow) + "x"
 }
 
 function getSecretAchAmount() {

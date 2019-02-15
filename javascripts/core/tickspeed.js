@@ -50,6 +50,8 @@ function getGalaxyPowerEff(ng, bi) {
 }
 
 function getTickSpeedMultiplier() {
+	div = 1.001
+	
 	let realnormalgalaxies = player.galaxies
 	if (player.masterystudies) realnormalgalaxies = Math.max(player.galaxies-player.quantum.electrons.sacGals,0)
 	if (player.tickspeedBoosts != undefined) if (player.galacticSacrifice.upgrades.includes(34)) realnormalgalaxies += 4
@@ -60,7 +62,7 @@ function getTickSpeedMultiplier() {
 		}
 		return 1;
 	}
-	if (inQC(2)) return 0.89
+	if (inQC(2)) return 0.89/(player.achievements.includes("r27")&&player.mods.ac?div:1)
 	let inERS = player.boughtDims != undefined || player.infinityUpgradesRespecced != undefined
 	let galaxies
 	let baseMultiplier
@@ -85,7 +87,7 @@ function getTickSpeedMultiplier() {
 			baseMultiplier -= linearGalaxies*0.02
 		} else {
 			let perGalaxy = 0.02 * getGalaxyPowerEff()
-			return Math.max(baseMultiplier-realnormalgalaxies*perGalaxy,0.83);
+			return Math.max(baseMultiplier-realnormalgalaxies*perGalaxy,0.83)/(player.achievements.includes("r27")&&player.mods.ac?div:1)
 		}
 	}
 	if (!inERS) {
@@ -95,7 +97,10 @@ function getTickSpeedMultiplier() {
 		galaxies = getGalaxyPower(realnormalgalaxies) * getGalaxyPowerEff(realnormalgalaxies, true)
 	}
 	let perGalaxy = player.infinityUpgradesRespecced != undefined ? 0.98 : 0.965
-	return Decimal.pow(perGalaxy, galaxies-linearGalaxies).times(baseMultiplier)
+	
+	if(player.achievements.includes("r27")&&player.mods.ac) baseMultiplier /= 1.1
+	
+	return Decimal.pow(perGalaxy, galaxies-linearGalaxies).times(baseMultiplier).divide(player.achievements.includes("r27")&&player.mods.ac?div:1)
 }
 
 function buyTickSpeed() {

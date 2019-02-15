@@ -1,3 +1,9 @@
+// Holy shit I'm lazy.
+
+function ge(e) {
+	return document.getElementById(e)
+}
+
 var inflationCheck = false
 var notifyId = 0
 function onLoad(noOffline) {
@@ -1542,8 +1548,11 @@ if (player.version < 5) {
   } else player.lastUpdate = new Date().getTime()
   if (detectNGPStart || player.totalTimePlayed < 1 || inflationCheck || forceToQuantumAndRemove) {
       ngModeMessages=[]
+      if (player.mods.qol) ngModeMessages.push("Welcome to the Quality of Life mod, made by Sigma. I describe myself as an \"efficient\" person, others call me lazy. If you're anything like me, this mod is for you. It automates basically everything, and removes some of the annoying grinds like the first 100 eternities.")
+      if (player.mods.secret) ngModeMessages.push("Welcome to the Secrets mod, made by Sigma. This mod adds a multiplier to the speed of the entire game based on secret achievements completed.")
+      if (player.mods.ac) ngModeMessages.push("Welcome to the Achievements+ mod, made by Sigma. This mod adds many new achievement rewards and an improved achievement bonus, making the achievements a more important part of the game.")
       if (player.aarexModifications.newGameExpVersion) ngModeMessages.push("Welcome to NG^ mode, made by Naruyoko! This mode adds way many buffs that this mode may be broken!")
-      if (player.exdilation!=undefined) ngModeMessages.push("Welcome to NG Update mode, an another dan-simon's end-game mod! In this mode, there are black hole and ex-dilation.")
+      if (player.exdilation!=undefined) ngModeMessages.push("Welcome to NG Update mode, another dan-simon's end-game mod! In this mode, there is the black hole and ex-dilation.")
       if (player.meta) {
           if (!player.aarexModifications.newGamePlusVersion) ngModeMessages.push("WARNING! You are disabling NG+ features on NG++! Standard NG++ have all of NG++ features and I recommend you to create a new save with NG+ and NG++ modes on.")
           if (player.masterystudies) ngModeMessages.push("Welcome to NG+++ mode, the extension of dan-simon's NG++ mode! In this mode, more time & dilation studies, more eternity milestones, and dilated challenges were added.")

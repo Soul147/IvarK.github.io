@@ -1,7 +1,8 @@
 var newsArray;
 
 function updateNewsArray() {
-newsArray = [//always true
+newsArray = [
+//always true
 ["The cookie is a lie.", true, "a1"], ["Antimatter cookies have been confirmed to not exist, whoever claims that, stop.", true, "a4"], ["Antimatter ghosts do not exist. Just like matter ghosts. They don't have any matter, for that matter.", true, "a2"],
 ["Nuclear power plants have been abandoned in favor of antimatter power.", true, "a3"],
 ["Antimatter prices have drastically dropped due to newfound abundance.", true, "a5"], ["In the news today, humans make an antimatter animal sacrifice to the antimatter god.", true, "a6"], ["You made one antimatter! Whatever that means.", true, "a7"],
@@ -178,7 +179,35 @@ newsArray = [//always true
 ["Did you know that NG-3 nerfs NG-- to make short runs longer?", "player.achievements.includes('r22') && player.tickspeedBoosts != undefined", "am24"],
 ["I guess NG-4 would be coming if NG-3 is too easy.", "player.achievements.includes('r22') && player.tickspeedBoosts != undefined", "am25"],
 ["I don't really think I am an A.I.", "player.achievements.includes('r22')", "am27"],
-["Somebody think you get your first galactic sacrifice faster than NG--. An update will be coming soon!", "player.achievements.includes('r22') && player.tickspeedBoosts != undefined", "am28"]
+["Somebody think you get your first galactic sacrifice faster than NG--. An update will be coming soon!", "player.achievements.includes('r22') && player.tickspeedBoosts != undefined", "am28"],
+// AD Ultimate
+["Fortnite is bad.", true, "x1"],
+["roses are red, silent as a mouse. your door is unlocked, i'm inside your house.", true, "x2"],
+["Nuclear war is like bringing a hand grenade to a knife fight, on an elevator.", true, "x3"],
+["Girls store pee in their titties that's why boobs are measured in cups", "!player.options.jesus", "x4"],
+["\"Hey, how are you?\"   \"Oh, me? Well, my tattered psyche is held together only by the flimsiest pretense of civility and I'm one quantum of additional stress away from causing serious bodily harm to myself and others.\"", "!player.options.jesus", "x4"],
+["Arguing with Christians is like playing chess with a pigeon, no matter how good I am at chess, the pigeon is just going to knock over the pieces, crap on the board, and strut around like it's victorious.", true, "x6"],
+["🤔", true, "x7"],
+// Quotes from the discord
+["<a href = 'https://discord.gg/mN8gc3R'>https://discord.gg/mN8gc3R</a>", true, "invite"],
+["I'm gonna say the N word!        THAT’S RACIST YOU CAN'T SAY THE N WORD!!!!        Mrs. Obama, I’ve done it, I’ve stopped racism.        Thank you Skipper. Now I am free to roam this earth.        Not if I have anything to say about it, and I do!! I’m gonna say the N word!!!        MRS. OBAMA GET DOWN!        NNNIIIIGGGGAAAAA        Mrs. Obama where are you, are you ok?        She is no longer with us Skipper, and with her death I am finally free to say the N word whenever I want.        Not if I have anything to say about it Trump, and I do. Prepare for my Civil Rights Beam.        *Beam sound effect        *Epic guitar solo        *Screams        Skipper my son, you wouldn’t let me die, would you?        Shut up cracker.        Hey Kowalski who’s that guy in front of us rising out of the water?        It is I, Barack Obama.        Mr. Obama? What are you doing here?        I have come to exact my revenge on you penguins for allowing my wife to die at the hands of Donald Trump.        But Mr. Obama we’ve done everything we could!        I’ve already made up my mind.        Mr. Obama don’t do it! This won’t bring Michelle back!        NNNIIIIGGGAAAAAA        *Screams        *Plane crash        *Explosion        Skippers Log... number 32. Barack Obama has struck us out of the sky by saying the N word.        It just doesn’t make sense, Skipper. Obama would never say the N word.        I don’t understand it either Kowalski, but some things you just got to live with. Unless! Donald Trump! I should have known it was you!!        Skipper, my son. I see you have discovered my master plan. Now that I have taken over Obama's body, I have free reign to say the N word whenever and however I please.        So, what you're saying is that you are inside of another man.    Why yes, I suppose you can say that.        But Mr. Trump. Wouldn’t that make you        GAY?!        NO, THIS CAN'T BE!        NNNNNNNNNNOOOOOOOOOOOOOOO!!!!!!!!!!!!!!!!!!!        Well boys we did it, racism is no more.        Hello Skipper.        Mr. Obama what are you doing here?        I came to thank you for your great service to this country.        No Thanks necessary Mr. Obama.        As a token of my gratitude, I’d like to give you the N word pass.        Mr. Obama it is an honor to call you        MY NIGGA.        And as to you old friend.", true, "qd1"],
+["\"Imagine walking into your house and you catch some dude fucking your dog or something and he's like 'Calm down dude, these things happen.'\" - TJK", "!player.options.jesus", "qd2"],
+["\"It doesn't have to be big, it just has to be good.\" - me (as I mod Antimatter Dimensions)", true, "qd3"],
+["\"Anime is just boring hentai.\" - me", "!player.options.jesus", "qd4"],
+["\"What the fuck is happening?\" - me", "!player.options.jesus", "qd5"],
+["\"Just yeet em together and then you got dicarbon\" - Electrocore", true, "qd6"],
+["\"You don't add the denominators!\" - me to Electrocore", true, "qd7"],
+["\"this dishwasher be like i want my rights\" -xb3n", true, "qd8"],
+["\"What if I told you that being gay is gay?\" -Electrocore", true, "qd9"],
+["\"Nut is aqueous\" -Electrocore during a chemistry lesson", "!player.options.jesus", "qd10"],
+["\"Who the fuck needs food?\" -Adonis", "!player.options.jesus", "qd11"],
+["\"Beryllium Nitrogen Iodine Sulfur Gallium Yttrium\" - me and Electrocore", true, "qd12"],
+["\"drink battery acid\" - me, according to Adonis", true, "qd13"],
+["\"you misspelled sulfur you stupid fuck\" - me to Electrocore", true, "qd14"],
+["\"much normal\" - my math teacher suffering from PTSD when I didn't do my homework for the 50th time", true, "qd15"],
+["\"Yo what the fuck is this?\" - Arbiter", true, "qd16"],
+["\"Bisexual is just diet gay.\" - Hex", true, "qd17"],
+["\"I don’t want anything in my poo-poo hole\" - p l a n t", true, "qd18"],
 /*NEXT ID: am29*/];}
 
 document.addEventListener("visibilitychange", function() {if (!document.hidden) {scrollNextMessage();}}, false);
@@ -189,10 +218,14 @@ function scrollNextMessage() {
   if (player.options.newsHidden) return false
   var s = document.getElementById('news');
   updateNewsArray();
-  //select a message at random
+  //select a message at random (biased toward previously unshown messages)
 
   try {
-    do {nextMsgIndex = Math.floor(Math.random() * newsArray.length)} while (!eval(newsArray[nextMsgIndex][1]))
+	  for(var i = 0; i < 100; i++) { // maximum runs 100
+		  nextMsgIndex = Math.floor(Math.random()*newsArray.length);
+		  
+		  if(!player.newsArray.includes(newsArray[nextMsgIndex][2]) && eval(newsArray[nextMsgIndex][1])) break;
+	  }
   } catch(e) {
       console.log("Newsarray doesn't work at idx " + nextMsgIndex)
   }
@@ -201,7 +234,7 @@ function scrollNextMessage() {
   scrollTimeouts = [];
 
   //set the text
-  s.textContent = newsArray[nextMsgIndex][0];
+  s.innerHTML = newsArray[nextMsgIndex][0];
 
   //get the parent width so we can start the message beyond it
   let parentWidth = s.parentElement.clientWidth;
@@ -216,7 +249,7 @@ function scrollNextMessage() {
     //distance to travel is s.parentElement.clientWidth + s.clientWidth + parent padding
     //we want to travel at rate pixels per second so we need to travel for (distance / rate) seconds
     let dist = s.parentElement.clientWidth + s.clientWidth + 20; //20 is div_container padding
-    let rate = 100; //change this value to change the scroll speed
+    let rate = 200; //change this value to change the scroll speed
     let transformDuration = dist / rate;
 
     if (!player.options.newsHidden && !player.newsArray.includes(newsArray[nextMsgIndex][2])) {

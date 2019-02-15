@@ -35,8 +35,11 @@ function getDimensionFinalMultiplier(tier) {
       if (player.galacticSacrifice) if (player.achievements.includes("r64")) multiplier = multiplier.times(1e6);
   }
 
+  if (player.achievements.includes("r22")&&player.mods.ac) multiplier = multiplier.times(Math.pow(1.05, player.newsArray.length));
   if (tier == 8 && player.achievements.includes("r23")) multiplier = multiplier.times(1.1);
+  if (player.achievements.includes("r24")&&player.mods.ac) multiplier = multiplier.times(1.8);
   else if (player.achievements.includes("r34")) multiplier = multiplier.times(player.galacticSacrifice?2:1.02);
+  if (player.achievements.includes("r38")&&player.mods.ac&&tier==1) multiplier = multiplier.times(Math.pow(Math.max(player.galaxies,1)+1,10));
   if (tier <= 4 && player.achievements.includes("r43")) multiplier = multiplier.times(1.25);
   if (player.galacticSacrifice&&player.achievements.includes("r31")) multiplier = multiplier.times(productAllTotalBought1());
   if (player.achievements.includes("r48")) multiplier = multiplier.times(1.1);
@@ -487,7 +490,8 @@ function timeMult() {
     var mult = new Decimal(1)
     if (player.infinityUpgrades.includes("timeMult")) mult = mult.times(infUpg11Pow());
     if (player.infinityUpgrades.includes("timeMult2")) mult = mult.times(infUpg13Pow());
-    if (player.achievements.includes("r76")) mult = mult.times(Math.pow(player.totalTimePlayed / (600*60*48), player.galacticSacrifice?0.1:0.05));
+    if (player.achievements.includes("r35")) mult = mult.times(Math.pow(player.totalTimePlayed / 360, player.galacticSacrifice?0.1:0.05));
+    if (player.achievements.includes("r76")) mult = mult.times(Math.pow(player.totalTimePlayed / 3600, player.galacticSacrifice?0.1:0.05));
     return mult;
 }
 
