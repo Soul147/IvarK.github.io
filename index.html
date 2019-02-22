@@ -871,7 +871,7 @@
                 <button class="storebtn" id="blackholeunlock" onclick="unlockBlackhole()" style="width:200px; height: 80px">Unlock the black hole<br>Cost: 1e4000 EP</button>
                 <div id="blackholediv">
                     <div>
-                        <p>You have <span id="blackholePowAmount" style="font-size:35px; color: black">0</span> black hole power. translated to <span id="DilMultAmount" style="font-size:35px; color: black">0</span>x multiplier on dilated time gain and <span id="InfAndReplMultAmount" style="font-size:35px; color: black">0</span>x multiplier on banked infinity gain and replicanti speed</p>
+                        <p>You have <span id="blackholePowAmount" style="font-size:35px; color: #333">0</span> black hole power. translated to <span id="DilMultAmount" style="font-size:35px; color: #333">0</span>x multiplier on dilated time gain and <span id="InfAndReplMultAmount" style="font-size:35px; color: #333">0</span>x multiplier on banked infinity gain and replicanti speed</p>
                     </div>
                     <div id="blackholePowPerSec">You are getting 0 black hole power per second.</div>
                     <br/>
@@ -1559,6 +1559,7 @@
                 <tr>
                     <td><button class="secondarytabbtn" onclick="showOptionTab('saving')">Saving</button></td>
                     <td><button class="secondarytabbtn" onclick="showOptionTab('otheroptions')">Options</button></td>
+                    <td><button class="secondarytabbtn" onclick="showOptionTab('qoloptions')" id = "qoloptionsbtn">QoL Options</button></td>
                 </tr>
             </table>
             <div class='optionstab' id='saving'>
@@ -1607,6 +1608,28 @@
                         <td></td>
                         <td><div><button id="decimalMode" onclick="switchDecimalMode()" class="storebtn" style="color:black; width: 200px; height: 55px"></button></div></td>
                         <td></td>
+                    </tr>
+                </table>
+            </div>
+            <div class='optionstab' id='qoloptions' style='display:none'>
+                <table>
+                    <tr>
+                        <td><div><button onclick="toggleQolOption(0)" class="storebtn" style="color:black; width: 200px; height: 55px; font-size: 12px" ach-tooltip="Always start with 100 eternities.">Automatic Eternity Milestones: <span id = "qolBtn0"></span></button></div></td>
+                        <td><div><button onclick="toggleQolOption(1)" class="storebtn" style="color:black; width: 200px; height: 55px; font-size: 12px" ach-tooltip="Automatically complete all challenges and unlock autobuyers once you infinity.">Automatic Challenge Completions: <span id = "qolBtn1"></span></button></div></td>
+                        <td><div><button onclick="toggleQolOption(2)" class="storebtn" style="color:black; width: 200px; height: 55px; font-size: 12px" ach-tooltip="Automatically complete eternity challenges based on log(1+log(1+EP)).">Automatic EC Completions: <span id = "qolBtn2"></span></button></div></td>
+                    </tr>
+                    <tr>
+                        <td><div><button onclick="toggleQolOption(3)" class="storebtn" style="color:black; width: 200px; height: 55px; font-size: 12px" ach-tooltip="Automatically buys max time dimensions.">Time Dimension Autobuyer: <span id = "qolBtn3"></span></button></div></td>
+                        <td><div><button onclick="toggleQolOption(4)" class="storebtn" style="color:black; width: 200px; height: 55px; font-size: 12px" ach-tooltip="Automatically buys max EP multipliers.">EP Multiplier Autobuyer: <span id = "qolBtn4"></span></button></div></td>
+                        <td><div><button onclick="toggleQolOption(5)" class="storebtn" style="color:black; width: 200px; height: 55px; font-size: 12px" ach-tooltip="Automatically buys max Time Theorems.">Time Theorem Autobuyer: <span id = "qolBtn5"></span></button></div></td>
+                    </tr>
+                    <tr>
+                        <td><div><button onclick="toggleQolOption(6)" class="storebtn" style="color:black; width: 200px; height: 55px; font-size: 12px" ach-tooltip="Automatically buys all rebuyable dilation upgrades.">Dilation Upgrade Autobuyer: <span id = "qolBtn6"></span></button></div></td>
+                        <td><div><button onclick="toggleQolOption(7)" class="storebtn" style="color:black; width: 200px; height: 55px; font-size: 12px" ach-tooltip="You gain 1% of EP gained on Eternity each second.">Automatic EP Gain: <span id = "qolBtn7"></span></button></div></td>
+                        <td><div><button onclick="toggleQolOption(8)" class="storebtn" style="color:black; width: 200px; height: 55px; font-size: 12px" ach-tooltip="Timestudy 131 doesn't disable galaxy autobuyer. Always creates the maximum number of RGs possible and doesn't apply galaxy reset to dimensions.">Nullify replicanti sacrifice: <span id = "qolBtn8"></span></button></div></td>
+                    </tr>
+                    <tr>                        
+						<td><div><button onclick="toggleQolOption(8)" class="storebtn" style="color:black; width: 200px; height: 55px; font-size: 12px" ach-tooltip="Start with infinity broken, and automatically upgrade and efficiently set up autobuyers. You must be almost as lazy as me.">Autobuyer Autobuyer: <span id = "qolBtn9"></span></button></div></td>
                     </tr>
                 </table>
             </div>
@@ -1861,10 +1884,10 @@
                             <div id="Antimatter Apocalypse" class="achievement achievementlocked" style="background-image: url(images/12.png)" ach-tooltip="Get over 10 QtVg (10e79) antimatter."><br></div>
                         </td>
                         <td>
-                            <div id="Boosting to the max" class="achievement achievementlocked" style="background-image: url(images/13.png)" ach-tooltip="Buy 10 Dimension Boosts."><br></div>
+                            <div id="Boosting to the max" class="achievement achievementlocked" style="background-image: url(images/13.png)" ach-tooltip="Buy 10 Dimension Boosts. Reward: Dimension boosts are 1% more powerful."><br></div>
                         </td>
                         <td>
-                            <div id="You got past The Big Wall" class="achievement achievementlocked" style="background-image: url(images/14.png)" ach-tooltip="Buy an Antimatter Galaxy."><br></div>
+                            <div id="You got past The Big Wall" class="achievement achievementlocked" style="background-image: url(images/14.png)" ach-tooltip="Buy an Antimatter Galaxy. Reward: Tickspeed cost starts at 100 instead of 1000."><br></div>
                         </td>
                         <td>
                             <div id="Double Galaxy" class="achievement achievementlocked" style="background-image: url(images/15.png)" ach-tooltip="Buy 2 Antimatter Galaxies."><br></div>
@@ -2287,9 +2310,28 @@
                                 <div id="I don't want you to live anymore." class="achievement achievementlocked" style="background-image: url(images/134.png)"></div>
                             </td>
                         </tr>
+                        <tr id="achRowngt1">
+                            <td>
+                                <div id="This is a Christian Server" class="achievement achievementlocked" style="background-image: url(images/ngt11.png)" ach-tooltip="Reach 1e359223 IP."><br></div>
+                            </td>
+							<td>
+                                <div id="Dilation was a bad idea" class="achievement achievementlocked" style="background-image: url(images/ngt12.png)" ach-tooltip="Reach 1e12 Tachyon Particles."><br></div>
+							</td>
+							<td>
+                                <div id="Faster than Keemstar" class="achievement achievementlocked" style="background-image: url(images/ngt13.png)" ach-tooltip="Reach 1eDate.now() IP."><br></div>
+							</td>
+							<td>
+                                <div id="error" class="achievement achievementlocked" style="background-image: url(images/ngt14.png)" ach-tooltip="Go Omnipotent."><br></div>
+							</td>
+                        </tr>
                 </table>
             </div>
             <div id="secretachievements" class="achtab" style="display:none;">
+				<div id = "secret">
+					Secret achievement multiplier on game speed: <span id = "secretachmult"></span>x<br>
+					Formula: 1.5 ^ achievements<br>
+					<button class = "secondarytabbtn" onclick = "player.options.secretachmult = !player.options.secretachmult">Toggle Multiplier</button>
+				</div>
                 <table id="secretachievementtable" style="margin: auto">
                     <tr id="secretAchRow1">
                         <td>
@@ -3483,6 +3525,7 @@
             <table class="table" style="margin: 0 auto">
                 <button class="storebtn" id="toggleautobuyers" style="font-size: 100%; width: 150px; height: 40px; margin: 3px" onclick="toggleAutoBuyers()">Enable/disable autobuyers</button>
                 <button class="storebtn" id="togglebulk" style="font-size: 100%; width: 150px; height: 40px;margin: 3px" onclick="toggleBulk()">Disable bulk buy</button>
+                <button class="storebtn" id="maxallautobuyers" style="font-size: 100%; width: 150px; height: 40px;margin: 3px" onclick="for(var i = 0; i < 12; i++) while(buyAutobuyer(i));">Max all autobuyers</button>
                 <button class="storebtn" id="togglecrunchmode" style="font-size: 100%; width: 150px; height: 40px;margin: 3px; display: none" onclick="toggleCrunchMode()">Auto crunch mode: amount</button>
                 <button class="storebtn" id="toggleautoetermode" style="font-size: 100%; width: 150px; height: 40px;margin: 3px; display: none" onclick="toggleAutoEterMode()">Auto eternity mode: amount</button>
                 <br>
@@ -4258,9 +4301,14 @@
 		<button class="storebtn" style="font-size: 15px" onclick="import_save('new')" style="display: inline">Import</button>
 		<button class="storebtn" id='ngmBtn' style="font-size: 15px" onclick="toggle_mode('ngm')" style="display: inline">NG-: OFF</button>
 		<button class="storebtn" id='ngmmBtn' style="font-size: 15px" onclick="toggle_mode('ngmm')" style="display: inline">NG--: OFF</button><br>
-		<button class="storebtn" id='rsBtn' style="font-size: 15px; width:255px" onclick="toggle_mode('rs')" style="display: inline">Respecced: OFF</button>
+		<button class="storebtn" id='rsBtn' style="font-size: 15px; width:255px" onclick="toggle_mode('rs')" style="display: inline">Respecced: NONE</button>
 		<button class="storebtn" id='ngpBtn' style="font-size: 15px" onclick="toggle_mode('ngp')" style="display: inline">NG+: OFF</button>
 		<button class="storebtn" id='ngppBtn' style="font-size: 15px" onclick="toggle_mode('ngpp')" style="display: inline">NG++: OFF</button><br>
+		<button class="storebtn" id='arrowsBtn' style="font-size: 15px; width:255px" onclick="toggle_mode('arrows')" style="display: inline">NG↑: Linear (↑⁰)</button><br>
+		Extras<br>
+		<button class="storebtn" id='acBtn' style="font-size: 15px" onclick="toggle_mode('ac')" style="display: inline">AC++: OFF</button>
+		<button class="storebtn" id='secretBtn' style="font-size: 15px" onclick="toggle_mode('secret')" style="display: inline">Secrets: OFF</button>
+		<button class="storebtn" id='qolBtn' style="font-size: 15px" onclick="toggle_mode('qol')" style="display: inline">QoL: OFF</button><br>
 		Click "Load" while holding shift to load a save without offline progress.
 		<div style="height:230px;overflow-y:auto">
 			<table id='saves'>
@@ -4402,6 +4450,9 @@
 <script type="text/javascript" src="javascripts/mods/ngmmm.js?1"></script>
 <script type="text/javascript" src="javascripts/mods/ngud.js"></script>
 <script type="text/javascript" src="javascripts/mods/irs.js??2"></script>
+<script type="text/javascript" src="javascripts/mods/ngt.js??2"></script>
+<script type="text/javascript" src="javascripts/mods/secret.js??2"></script>
+<script type="text/javascript" src="javascripts/mods/qol.js??2"></script>
 <script type="text/javascript" src="javascripts/game.js?15"></script>
 <script type="text/javascript" src="javascripts/sha512.js"></script>
 </body>
