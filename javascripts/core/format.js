@@ -1,4 +1,5 @@
-var FormatList = ['', 'K', 'M', 'B', 'T', 'Qa', 'Qt', 'Sx', 'Sp', 'Oc', 'No', 'Dc', 'UDc', 'DDc', 'TDc', 'QaDc', 'QtDc', 'SxDc', 'SpDc', 'ODc', 'NDc', 'Vg', 'UVg', 'DVg', 'TVg', 'QaVg', 'QtVg', 'SxVg', 'SpVg', 'OVg', 'NVg', 'Tg', 'UTg', 'DTg', 'TTg', 'QaTg', 'QtTg', 'SxTg', 'SpTg', 'OTg', 'NTg', 'Qd', 'UQd', 'DQd', 'TQd', 'QaQd', 'QtQd', 'SxQd', 'SpQd', 'OQd', 'NQd', 'Qi', 'UQi', 'DQi', 'TQi', 'QaQi', 'QtQi', 'SxQi', 'SpQi', 'OQi', 'NQi', 'Se', 'USe', 'DSe', 'TSe', 'QaSe', 'QtSe', 'SxSe', 'SpSe', 'OSe', 'NSe', 'St', 'USt', 'DSt', 'TSt', 'QaSt', 'QtSt', 'SxSt', 'SpSt', 'OSt', 'NSt', 'Og', 'UOg', 'DOg', 'TOg', 'QaOg', 'QtOg', 'SxOg', 'SpOg', 'OOg', 'NOg', 'Nn', 'UNn', 'DNn', 'TNn', 'QaNn', 'QtNn', 'SxNn', 'SpNn', 'ONn', 'NNn', 'Ce',];
+﻿var FormatList = ['', 'K', 'M', 'B', 'T', 'Qa', 'Qt', 'Sx', 'Sp', 'Oc', 'No', 'Dc', 'UDc', 'DDc', 'TDc', 'QaDc', 'QtDc', 'SxDc', 'SpDc', 'ODc', 'NDc', 'Vg', 'UVg', 'DVg', 'TVg', 'QaVg', 'QtVg', 'SxVg', 'SpVg', 'OVg', 'NVg', 'Tg', 'UTg', 'DTg', 'TTg', 'QaTg', 'QtTg', 'SxTg', 'SpTg', 'OTg', 'NTg', 'Qd', 'UQd', 'DQd', 'TQd', 'QaQd', 'QtQd', 'SxQd', 'SpQd', 'OQd', 'NQd', 'Qi', 'UQi', 'DQi', 'TQi', 'QaQi', 'QtQi', 'SxQi', 'SpQi', 'OQi', 'NQi', 'Se', 'USe', 'DSe', 'TSe', 'QaSe', 'QtSe', 'SxSe', 'SpSe', 'OSe', 'NSe', 'St', 'USt', 'DSt', 'TSt', 'QaSt', 'QtSt', 'SxSt', 'SpSt', 'OSt', 'NSt', 'Og', 'UOg', 'DOg', 'TOg', 'QaOg', 'QtOg', 'SxOg', 'SpOg', 'OOg', 'NOg', 'Nn', 'UNn', 'DNn', 'TNn', 'QaNn', 'QtNn', 'SxNn', 'SpNn', 'ONn', 'NNn', 'Ce',];
+var LongFormatList = ['', 'thousand', 'million', 'billion', 'trillion', 'quadrillion', 'quintillion', 'sextillion', 'septillion', 'octillion', 'nonillion'];
 
 function letter(power,str) {
     const len = str.length;
@@ -47,6 +48,41 @@ function getShortAbbreviation(e) {
 	['', 'Dc', 'Vg', 'Tg', 'Qd', 'Qi', 'Se', 'St', 'Og', 'Nn'],
 	['', 'Ce', 'Dn', 'Tc', 'Qe', 'Qu', 'Sc', 'Si', 'Oe', 'Ne']]
 	const prefixes2 = ['', 'MI', 'MC', 'NA', 'PC', 'FM', 'AT', 'ZP', 'YC', 'XN', 
+	'VE', 'ME', 'DE', 'TE', 'TeE', 'PE', 'HE', 'HeE', 'OC', 'EC', 
+	'IS', 'MS', 'DS', 'TS', 'TeS', 'PS', 'HS', 'HeS', 'OS', 'ES', 
+	'TN', 'MTN', 'DTN', 'TTN', 'TeTN', 'PTN', 'HTN', 'HeTN', 'OTN', 'ETN', 
+	'TeC', 'MTeC', 'DTeC', 'TTeC', 'TeTeC', 'PTeC', 'HTeC', 'HeTeC', 'OTeC', 'ETeC', 
+	'PC', 'MPC', 'DPC', 'TPC', 'TePC', 'PPC', 'HPC', 'HePC', 'OPC', 'EPC', 
+	'HC', 'MHC', 'DHC', 'THC', 'TeHC', 'PHC', 'HHC', 'HeHC', 'OHC', 'EHC', 
+	'HeC', 'MHeC', 'DHeC', 'THeC', 'TeHeC', 'PHeC', 'HHeC', 'HeHeC', 'OHeC', 'EHeC', 
+	'OC', 'MOC', 'DOC', 'TOC', 'TeOC', 'POC', 'HOC', 'HeOC', 'OOC', 'EOC', 
+	'EC', 'MEC', 'DEC', 'TEC', 'TeEC', 'PEC', 'HEC', 'HeEC', 'OEC', 'EEC', 
+	'HT', 'MHT', 'DHT']
+	var result = ''
+	var id = Math.floor(e/3-1)
+	var log = Math.floor(Math.log10(id))
+	var step = Math.max(Math.floor(log/3-3),0)
+	id = Math.round(id/Math.pow(10,Math.max(log-9,0)))*Math.pow(10,Math.max(log-9,0)%3)
+    while (id > 0) {		
+		var partE = id % 1000
+		if (partE > 0) {
+			if (partE == 1 && step > 0) var prefix = ""
+			else var prefix = prefixes[0][partE % 10] + prefixes[1][Math.floor(partE/10) % 10] + prefixes[2][Math.floor(partE/100)]
+			if (result == "") result = prefix + prefixes2[step]
+			else result = prefix + prefixes2[step] + '-' + result
+		}
+		id = Math.floor(id/1000)
+		step++
+	}
+	return result
+}
+
+function getLongAbbreviation(e) {
+	const prefixes = [
+	['', 'un', 'du', 'tre', 'qua', 'quinqua', 'sex', 'sep', 'octo', 'novem'],
+	['', 'decillion', 'vigintillion', 'trigintillion', 'quadragintillion', 'quinquagintillion', 'sexagintillion', 'septuagintillion', 'octogintillion', 'nonagintillion'],
+	['', 'centillion', 'ducentillion', 'trecentillion', 'quadracentillion', 'quinquacentillion', 'sexcentillion', 'septuacentillion', 'octocentillion', 'nonacentillion']]
+	const prefixes2 = ['', 'millillion', 'micrillion', 'nanillion', 'picillion', 'femtillion', 'attillion', 'zeptillion', 'yoctillion', 'yeetillion', 
 	'VE', 'ME', 'DE', 'TE', 'TeE', 'PE', 'HE', 'HeE', 'OC', 'EC', 
 	'IS', 'MS', 'DS', 'TS', 'TeS', 'PS', 'HS', 'HeS', 'OS', 'ES', 
 	'TN', 'MTN', 'DTN', 'TTN', 'TeTN', 'PTN', 'HTN', 'HeTN', 'OTN', 'ETN', 
@@ -190,7 +226,7 @@ function formatValue(notation, value, places, placesUnder1000, noInf) {
             var matissa = value / Math.pow(10, Math.floor(Math.log10(value)));
             var power = Math.floor(Math.log10(value));
         }
-        if ((notation === "Mixed scientific" && power >= 33) || notation === "Scientific") {
+        if ((notation === "Mixed scientific" && power >= (player.options.mixed || 33)) || notation === "Scientific") {
             if (player.options.scientific !== undefined && player.options.scientific.significantDigits !== undefined) places=player.options.scientific.significantDigits-1
             matissa = matissa.toFixed(places)
             if (matissa >= 10) {
@@ -319,7 +355,11 @@ function formatValue(notation, value, places, placesUnder1000, noInf) {
             power++;
         }
 
-        if (notation === "Standard" || notation === "Mixed scientific") {
+		if (notation === "Written") {
+            if (power <= 33) return matissa + " " + LongFormatList[(power - (power % 3)) / 3];
+            else return matissa + " " + getLongAbbreviation(power);
+		}
+        else if (notation === "Standard" || notation === "Mixed scientific") {
             if (power <= 303) return matissa + " " + FormatList[(power - (power % 3)) / 3];
             else if (power > 3e11+2) return getShortAbbreviation(power) + "s";
             else return matissa + " " + getAbbreviation(power);
@@ -581,13 +621,14 @@ function iroha (n, depth) {
   return iroha_special[prefix(num)] + (rec.eq(1) ? '' : iroha(rec, depth - 1));
 }
 
-function getFullExpansion(num) {
+function getFullExpansion(num, decimal) {
 	if (num === null) return "NaN"
 	if (isNaN(num)) return "NaN"
 	if (!break_infinity_js && typeof(num) != "number") if (isNaN(num.logarithm)) return "NaN"
 	if (num > 1e12) return shorten(num)
 	if (player.options.notation === "Greek" || player.options.notation === "Morse code" || player.options.notation === "Symbols" || player.options.notation === "Lines" || player.options.notation === "Simplified Written") return convTo(player.options.notation, num)
-	return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+	if(decimal) return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+	return Math.floor(num).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
 }
 
 shorten = function (money) {

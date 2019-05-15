@@ -141,10 +141,18 @@ const allAchievements = {
   ng3p36 : "I can’t get my multipliers higher!",
   ng3p37 : "No dilation means no production.",
   ng3p38 : "I don't want you to live anymore.",
+  ng3p41 : "Time is not relative",
+  ng3p42 : "ERROR 404: DIMENSIONS NOT FOUND",
+  ng3p43 : "Impossible expectations",
+  ng3p44 : "Studies are wasted",
   ngt11 : "This is a Christian Server",
-  ngt12 : "Dilation was a bad idea",
-  ngt13 : "Faster than Keemstar",
-  ngt14 : "error",
+  ngt12 : "Faster than Keemstar",
+  ngt13 : "error",
+  ngt14 : "IT CAN'T EVER BE ENOUGH",
+  ngt15 : "You ever wonder why we're here?",
+  ngt16 : "You don't need to grind anymore",
+  ngt17 : "This Achievement Doesn't Exist 4",
+  ngt18 : "I don't know why I can't get rid of you.",
   s11 : "The first one's always free",
   s12 : "Just in case",
   s13 : "It pays to have respect",
@@ -231,6 +239,12 @@ function giveAchievement(name) {
 
     if (player.achievements.includes(allAchievementNums[name])) return false
 
+	var achId = allAchievementNums[name].split("r")[1]
+	var secretAchId = allAchievementNums[name].split("s")[1]
+	
+	var ngtAchId = allAchievementNums[name].split("s")[1]
+	if(ngtAchId != undefined) if(!player.mods.ngt) return
+
     var ngudAchId=allAchievementNums[name].split("ngud")[1]
     if (ngudAchId!=undefined) if (player.exdilation==undefined) return
 
@@ -239,6 +253,8 @@ function giveAchievement(name) {
         ngppAchId=parseInt(ngppAchId)
         if (player.meta==undefined&&(player.exdilation==undefined||(ngppAchId!=13&&ngppAchId!=18))) return
     }
+	
+	var ng3pAchId=allAchievementNums[name].split("ng3p")[1]
 
     if (allAchievementNums[name].split("ng3p")[1]&&!player.masterystudies) return false
 
@@ -249,6 +265,26 @@ function giveAchievement(name) {
         if (r==105||(r!=117&&r>110)) return false
     }
 
+    if(player.mods.ngpt) {
+		value = 1
+		
+		if(achId) {
+			value = Math.floor(parseInt(achId) / 10); // 1 core per row that achievement is in
+		}
+		if(secretAchId) {
+			value = getSecretAchAmount()+1 // 1 core per secret achievement unlocked
+		}
+		if(ngppAchId || ngudAchId) {
+			value = 15 // 15 cores per achievement - these are very late-game
+		}
+		if(ng3pAchId) {
+			value = Math.floor(parseInt(ng3pAchId) / 10) * 5 + 15 // 15 cores plus 5 per row
+		}
+		
+		player.mods.ngpt.forge.cores += value
+		player.mods.ngpt.forge.totalCores += value
+	}
+	
     if (name == "A sound financial decision") localStorage.setItem(btoa("dsAM_asfd"),"")
     else $.notify(name, "success");
     player.achievements.push(allAchievementNums[name]);
@@ -257,6 +293,11 @@ function giveAchievement(name) {
         player.infMult = player.infMult.times(4);
         player.autoIP = player.autoIP.times(4);
         if (player.autoCrunchMode == "amount" && player.autobuyers[11].priority != undefined) player.autobuyers[11].priority = Decimal.times(player.autobuyers[11].priority, 4);
+    }
+	if (name == "Faster than Keemstar") {
+        player.infMult = player.infMult.times(1000);
+        player.autoIP = player.autoIP.times(1000);
+        if (player.autoCrunchMode == "amount" && player.autobuyers[11].priority != undefined) player.autobuyers[11].priority = Decimal.times(player.autobuyers[11].priority, 1000);
     }
     if (name == "The swarm" && player.boughtDims) document.getElementById('replicantigalaxypowerdiv').style.display=""
     if (name == "GAS GAS GAS") {
@@ -274,14 +315,14 @@ function giveAchievement(name) {
 
 function updateAchievements() {
 	var amount = 0
-	for (var i=1; i<19; i++) {
+	for (var i=1; i<20; i++) {
 		var shown=false
 		var rowid=i
-		if (i >= 18) {
+		if (i >= 19) {
 			var shown = player.mods.ngt;
-			rowid = "ngt" + (i - 17)
+			rowid = "ngt" + (i - 18)
 		}
-		else if (i>14&&i<18) {
+		else if (i>14&&i<19) {
 			var shown=!(!player.masterystudies)
 			rowid="ng3p"+(i-14)
 		} else if (i>13) {
@@ -305,7 +346,7 @@ function updateAchievements() {
 					else if (realAchNum==41) realAchNum=76
 				}
 				if (player.masterystudies&&achNum>150) var achId="ng3p"+(achNum-140)
-				if (player.mods.ngt&&achNum>150) var achId="ngt"+(achNum-170)
+				if (player.mods.ngt&&achNum>150) var achId="ngt"+(achNum-180)
 				else if (player.exdilation&&achNum>140) {
 					if (achNum==145) var achId="ngpp13"
 					else if (achNum==147) var achId="ngpp18"
@@ -315,9 +356,9 @@ function updateAchievements() {
 				var name=allAchievements[achId]
 				if (player.achievements.includes(achId)) {
 					n++
-					if(ge(name)) document.getElementById(name).className = "achievementunlocked"
+					if(ge(name)) ge(name).className = "achievementunlocked"
 				} else {
-					if(ge(name)) document.getElementById(name).className = "achievementlocked"
+					if(ge(name)) ge(name).className = "achievementlocked"
 				}
 			}
 			if (n == 8) {
@@ -350,13 +391,9 @@ function updateAchievements() {
 		}
 	}
 
-	player.achPow = Decimal.pow(player.aarexModifications.newGameMinusMinusVersion ? 5 : 1.5, amount)
+	player.achPow = Decimal.floor(Math.pow(player.galacticSacrifice ? 5 : 1.5, amount) * 100).divide(100)
 	
-	// Tetrated achievement multiplier from AC++
-	
-	if(player.mods.ac);
-	
-	document.getElementById("achmultlabel").textContent = "Current achievement multiplier on each Dimension: " + getFullExpansion(player.achPow) + "x"
+	document.getElementById("achmultlabel").textContent = "Current achievement multiplier on each Dimension: " + getFullExpansion(player.achPow, true) + "x"
 }
 
 function getSecretAchAmount() {

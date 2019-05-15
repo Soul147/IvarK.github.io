@@ -1,5 +1,5 @@
 function getDimensionBoostPower(next, focusOn) {
-  if (player.currentChallenge == "challenge11" || player.currentChallenge == "challenge16" || player.currentChallenge == "postc1" || player.currentChallenge == "postcngm3_1") return Decimal.fromNumber(1);
+  if (player.currentChallenge == "challenge11" || player.currentChallenge == "challenge16" || player.currentChallenge == "postc1" || player.currentChallenge == "postcngm3_1" || inOC(3)) return Decimal.fromNumber(1);
 
   var ret = 2
   if (!player.galacticSacrifice) {
@@ -19,6 +19,7 @@ function getDimensionBoostPower(next, focusOn) {
       else if (player.challenges.includes("postc7")) ret = Math.pow(ret,2)
   }
   if (player.dilation.studies.includes(6)&&player.currentEternityChall!="eterc14"&&!inQC(3)&&!inQC(7)) ret = getExtraDimensionBoostPower().times(ret)
+  if(compOC(4)) ret = ret.pow(ngt.t.reward[3])
   return new Decimal(ret)
 }
 
@@ -32,7 +33,7 @@ function softReset(bulk) {
       giveAchievement("Boosting to the max");
   }
   if (player.currentChallenge=="challenge14") player.tickBoughtThisInf.pastResets.push({resets:player.resets,bought:player.tickBoughtThisInf.current})
-  if (player.dilation.upgrades.includes("ngpp3") && player.eternities >= 1e9 && player.masterystudies && player.aarexModifications.switch === undefined) {
+  if ((player.dilation.upgrades.includes("ngpp3") && player.eternities >= 1e9 && player.masterystudies && player.aarexModifications.switch === undefined) || player.achievements.includes("ngt14")) {
       skipResets()
       player.matter = new Decimal(0)
       player.postC8Mult = new Decimal(1)
@@ -206,7 +207,8 @@ function softReset(bulk) {
       quantum: player.quantum,
       old: player.old,
       dontWant: player.dontWant,
-      aarexModifications: player.aarexModifications,
+	  aarexModifications: player.aarexModifications,
+	  mods: player.mods,
 	  mods: player.mods
   };
   if (player.currentChallenge == "challenge10" || player.currentChallenge == "postc1") {
@@ -359,7 +361,8 @@ function getDimboostCostIncrease () {
 		if (player.infinityUpgrades.includes("postinfi50")) ret -= 0.5
 	} else {
 		if (player.timestudy.studies.includes(211)) ret -= 5
-		if (player.timestudy.studies.includes(222)) ret -= 2
+		if (player.timestudy.studies.includes(222)) ret -= 2-!!player.mods.ngt
+		if (player.mods.ngt) if(hasUpg(1)) ret -= 2
 		if (player.masterystudies) if (player.masterystudies.includes("t261")) ret -= 1
 		if (player.currentChallenge == "challenge4") ret += 5
 		if (player.boughtDims&&player.achievements.includes('r101')) ret -= Math.min(8, Math.pow(player.eternityPoints.max(1).log(10), .25))

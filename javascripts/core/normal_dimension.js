@@ -34,11 +34,10 @@ function getDimensionFinalMultiplier(tier) {
       if (player.achievements.includes("r68")) multiplier = multiplier.times(player.galacticSacrifice?5:1.5);
       if (player.galacticSacrifice) if (player.achievements.includes("r64")) multiplier = multiplier.times(1e6);
   }
-
   if (player.achievements.includes("r22")&&player.mods.ac) multiplier = multiplier.times(Math.pow(1.05, player.newsArray.length));
   if (tier == 8 && player.achievements.includes("r23")) multiplier = multiplier.times(1.1);
   if (player.achievements.includes("r24")&&player.mods.ac) multiplier = multiplier.times(1.8);
-  else if (player.achievements.includes("r34")) multiplier = multiplier.times(player.galacticSacrifice?2:1.02);
+  if (player.achievements.includes("r34")) multiplier = multiplier.times(player.galacticSacrifice?2:1.02);
   if (player.achievements.includes("r38")&&player.mods.ac&&tier==1) multiplier = multiplier.times(Math.pow(Math.max(player.galaxies,1)+1,10));
   if (tier <= 4 && player.achievements.includes("r43")) multiplier = multiplier.times(1.25);
   if (player.galacticSacrifice&&player.achievements.includes("r31")) multiplier = multiplier.times(productAllTotalBought1());
@@ -57,6 +56,7 @@ function getDimensionFinalMultiplier(tier) {
   if (player.boughtDims&&player.achievements.includes("r98")) multiplier = multiplier.times(player.infinityDimension8.amount.max(1))
   if (player.achievements.includes("r84")) multiplier = multiplier.times(player.money.pow(player.galacticSacrifice?0.00002:0.00004).plus(1));
   else if (player.achievements.includes("r73")) multiplier = multiplier.times(player.money.pow(player.galacticSacrifice?0.00001:0.00002).plus(1));
+  if (player.achievements.includes("ngt17")) multiplier = multiplier.times(player.money.pow(0.001).plus(1));
 
 
   if (player.timestudy.studies.includes(71) && tier !== 8) multiplier = multiplier.times(calcTotalSacrificeBoost().pow(0.25).min("1e210000"));
@@ -79,8 +79,9 @@ function getDimensionFinalMultiplier(tier) {
 
   if (player.currentChallenge == "postc4" && player.postC4Tier != tier) multiplier = multiplier.pow(0.25)
   if (player.challenges.includes("postc4") && player.galacticSacrifice === undefined) multiplier = multiplier.pow(1.05);
+  if (compOC(1)) multiplier = multiplier.pow(ngt.t.reward[0]);
   if (player.currentEternityChall == "eterc10") multiplier = multiplier.times(ec10bonus)
-  if (player.timestudy.studies.includes(193)) multiplier = multiplier.times(Decimal.pow(1.03, getEternitied()).min("1e13000"))
+  if (player.timestudy.studies.includes(193)) multiplier = multiplier.times(Decimal.pow(1.03+!!player.mods.ngt*0.07, getEternitied()).min(Decimal.pow("1e13000", 1+!!player.mods.ngt*9)))
   if (tier == 8 && player.timestudy.studies.includes(214)) multiplier = multiplier.times((calcTotalSacrificeBoost().pow(8)).min("1e46000").times(calcTotalSacrificeBoost().pow(1.1).min(new Decimal("1e125000"))))
   if (tier == 8 && player.achievements.includes("ng3p27")) multiplier = multiplier.times(Decimal.pow(10,Math.pow(player.galaxies,Math.min(Math.sqrt(Math.log10(Math.max(player.galaxies,1)))*2,2.5))))
 	  
@@ -99,7 +100,7 @@ function getDimensionFinalMultiplier(tier) {
     }
   }
 
-  if (player.dilation.upgrades.includes(6)) multiplier = multiplier.times(player.dilation.dilatedTime.max(1).pow(308))
+  if(player.dilation.upgrades) if (player.dilation.upgrades.includes(6)) multiplier = multiplier.times(player.dilation.dilatedTime.max(1).pow(308))
   if (useHigherNDReplMult) multiplier = multiplier.times(ndReplMult)
   if (player.challenges.includes("postcngmm_1")||player.currentChallenge=="postcngmm_1") multiplier = multiplier.times(timeAndDimMult)
   if (player.galacticSacrifice) {
@@ -112,6 +113,7 @@ function getDimensionFinalMultiplier(tier) {
       if (player.currentChallenge == "postc8" || inQC(6)) multiplier = multiplier.times(player.postC8Mult)
       if (multiplier.lt(1)) multiplier = new Decimal(1)
   }
+  if (player.masterystudies != undefined) if (player.dilation.active) multiplier = multiplier.pow(getNanofieldRewardEffect(5))
   return multiplier;
 }
 
@@ -192,6 +194,7 @@ function hasInfinityMult(tier) {
         if (tier > player.resets + 4) return false;
         if (tier > 1 && player[TIER_NAMES[tier - 1] + 'Amount'] == 0 && getEternitied() < 30) return false;
         if ((player.currentChallenge == "challenge4" || player.currentChallenge == "postc1") && tier > 6) return false
+		if (inOC(1) && tier > 1) return false;
     
         return true;
     }
@@ -212,7 +215,11 @@ function hasInfinityMult(tier) {
         if (player.galacticSacrifice) if ((player.galacticSacrifice.upgrades.includes(33) && player.currentChallenge != "challenge15" && player.currentChallenge != "postc1") || focusOn == "g33") dimMult *= galUpgrade33();
         if (focusOn == "no-QC5") return dimMult
         if (QCIntensity(5)) dimMult += getQCReward(5)
-        if (player.masterystudies && focusOn != "linear") dimMult = Decimal.pow(dimMult, getMPTPower())
+        if (hasUpg(7)) dimMult = Decimal.pow(dimMult, getUpgEff(7))
+        if (player.masterystudies) {
+			if (player.masterystudies.includes("d12")) dimMult += getNanofieldRewardEffect(8)
+			if (focusOn != "linear") dimMult = Decimal.pow(dimMult, getMPTPower())
+		}
         return dimMult;
     }
 
@@ -506,7 +513,7 @@ function infUpg13Pow() {
 }
 
 function dimMults() {
-	return Decimal.pow(1+getInfinitied()*0.2,(player.galacticSacrifice?2:1)*(player.timestudy.studies.includes(31)?4:1))
+	return Decimal.pow(1+getInfinitied()*0.2,(player.galacticSacrifice?2:1)*(player.timestudy.studies.includes(31)?!!player.mods.ngt*6+4:1))
 }
 
 function getInfinitiedMult() {
@@ -526,7 +533,9 @@ function getDimensionProductionPerSecond(tier) {
 		var maximum = player.galacticSacrifice ? 3 : 0
 		tick = Decimal.pow(10, Math.pow(Math.abs(maximum-tick.log10()), dilationPowerStrength()))
 		if (player.dilation.upgrades.includes(9)) tick = Decimal.pow(10, Math.pow(Math.abs(maximum-tick.log10()), 1.05))
+		if (player.masterystudies != undefined) tick = tick.pow(getNanofieldRewardEffect(5))
 		return ret.times(Decimal.pow(10,(player.aarexModifications.newGame3MinusVersion?2:3)-maximum)).times(tick);
 	}
+	if(inOC(4)) ret = ret.pow(0.25);
 	return ret.div(tick.div(1e3));
 }

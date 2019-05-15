@@ -6,6 +6,12 @@ dev.giveAllAchievements = function() {
     })
 }
 
+dev.giveAllSecretAchievements = function() {
+    Object.keys(allAchievements).forEach( function(key) {
+        if(key.includes("s")) giveAchievement(allAchievements[key])
+    })
+}
+
 dev.doubleEverything = function() {
     Object.keys(player).forEach( function(key) {
         if (typeof player[key] === "number") player[key] *= 2;
@@ -69,6 +75,17 @@ dev.fixSave = function() {
 dev.implode = function() {
     document.getElementById("body").style.animation = "implode 2s 1";
     setTimeout(function(){ document.getElementById("body").style.animation = ""; }, 2000)
+}
+
+dev.omniAnim = function(time=1) {
+	ge("omniAnim").style.transitionDuration = time + "s";
+	
+    ge("omniAnim").style.width = "2500px";
+    ge("omniAnim").style.height = "2500px";
+	setTimeout(function() {
+		ge("omniAnim").style.width = "0px";
+		ge("omniAnim").style.height = "0px";
+	}, time * 1000)
 }
 
 dev.updateCosts = function() {

@@ -1,8 +1,7 @@
 var newsArray;
 
 function updateNewsArray() {
-newsArray = [
-//always true
+newsArray = [//always true
 ["The cookie is a lie.", true, "a1"], ["Antimatter cookies have been confirmed to not exist, whoever claims that, stop.", true, "a4"], ["Antimatter ghosts do not exist. Just like matter ghosts. They don't have any matter, for that matter.", true, "a2"],
 ["Nuclear power plants have been abandoned in favor of antimatter power.", true, "a3"],
 ["Antimatter prices have drastically dropped due to newfound abundance.", true, "a5"], ["In the news today, humans make an antimatter animal sacrifice to the antimatter god.", true, "a6"], ["You made one antimatter! Whatever that means.", true, "a7"],
@@ -22,7 +21,7 @@ newsArray = [
 ["You have found the rarest antimatter pepe, it's ultra rare!", true, "a48"], ["Can we get 1e169 likes on this video??? Smash that like button!!", true, "a49"],
 ["The smell of antimatter has been revealed. It smells like kittens", true, "a50"], ["Just another antimatter in the wall", true, "a51"], ["GET SNIPED, WEAKLING", true, "a52"], ["Thanks a lot -dankesehr", true, "a53"],
 ["This world situation is a SOS situation to the world!! MAYDAY, MAYDAY!!", true, "a54"], ["As for sure as the sun rises in the west, of all the singers and poets on earth, I am the bestest. - hevipelle", true, "a55"], ["I'm good at using github -hevipelle", true, "a56"],
-["A new chat server has been created for Antimatter people to spy on Matter people, and the world has fallen into chaos and discord", true, "a57"], ["A new study has come out linking the consumption of potatoes with increased risk of Antimatter implosion.  Scientists suggest eating more.", true, "a58"], ["I thought that I fixed that bug but apparently some update broke it again -hevipelle", true, "a59"],
+["A new chat server has been created for Antimatter people to spy on Matter people, and the world has fallen into chaos and discord", true, "a57"], ["A new study has come out linking the consumption of potatoes with increased risk of Antimatter implosion.	Scientists suggest eating more.", true, "a58"], ["I thought that I fixed that bug but apparently some update broke it again -hevipelle", true, "a59"],
 ["Maybe I'm gay then -Bootato", true, "a60"], ["Breaking news! Hevipelle has just announced that the buy max button is in fact going to be removed!", true, "a61"], ["I dedicate this game to my girlfriend", true, "a62"],
 ["Antimatter guns don't kill antimatter people, antimatter people kill antimatter people but does that mean that antimatter toaster doesn't toast antimatter toasts, antimatter toast toasts antimatter toasts?", true, "a63"],
 ["But to an antimatter person, wouldn't they be matter and us antimatter?", true, "a64"], ["And nothing Antimatters", true, "a65"],
@@ -37,15 +36,15 @@ newsArray = [
 ["According to no known laws of aviation, there are multiple ways a bee should be able to be swallowed up by antimatter", true, "a87"], ["You either die as matter or live long enough to be consumed by the antimatter, and then die again", true, "a88"],
 ["If you gaze long enough into the antimatter, the antimatter gazes back into you", true, "a89"], ["Always gonna give you up. Always gonna let you down. - anti-Rick Astley", true, "a90"],
 ["Antimatter Dimensions: the next update is always 5 hours away. Always.", true, "a91"], ["#DimensionLivesAntimatter", true, "a92"],
-["Do antimatter people with suicidal thoughts get depressants?", true, "a93"], ["To matter or to antimatter, that is the question.", true, "a94"], ["Why is everything so Hevi?",  true, "a95"],
-["It has been scientifically proven ages ago, that cats made of matter are assholes. We have good news, because cats made of antimatter are still assholes",  true, "a96"],
-["Nobody once told me the anti-world wasn’t gonna roll me", true, "a97"], ["Antimatter is like internet. If you're reading this, you can't have enough of it.",  true, "a98"],
-["Antimatter has made time travel possible and I'm here to make the past great again. - 2nd President of the World",  true, "a99"],
-["Please insert Disc -1 to continue playing  Antimatter Dimensions ™.", true, "a100"], ["Lore - coming soon ™", true, "a101"],
+["Do antimatter people with suicidal thoughts get depressants?", true, "a93"], ["To matter or to antimatter, that is the question.", true, "a94"], ["Why is everything so Hevi?",	true, "a95"],
+["It has been scientifically proven ages ago, that cats made of matter are assholes. We have good news, because cats made of antimatter are still assholes",	true, "a96"],
+["Nobody once told me the anti-world wasn’t gonna roll me", true, "a97"], ["Antimatter is like internet. If you're reading this, you can't have enough of it.",	true, "a98"],
+["Antimatter has made time travel possible and I'm here to make the past great again. - 2nd President of the World",	true, "a99"],
+["Please insert Disc -1 to continue playing	Antimatter Dimensions ™.", true, "a100"], ["Lore - coming soon ™", true, "a101"],
 ["I was a part of antimatter like you once. But then I got matter in my knee.", true, "a101"], ["Antimatter... antimatter never changes... until you get to quantum physics of antimatter, but we don't have enough tachyon particles for that.", true, "a102"],
-["There is no war in Antimatter Dimensions. Here we are safe. Here we are free.", true, "a103"], ["Antimatter has solved global warming.  In unrelated news, the Earth no longer exists.",  true, "a104"],
-["Anti-water, anti-Earth, anti-fire, anti-air. Long ago, the four anti-nations lived together in harmony. Then, everything changed when the anti-Fire Nation attacked. Only the anti-Avatar, the master of all 4 anti-elements could bring balance to the anti-world, but when the world needed him most, he accidentally touched some regular matter and exploded.",  true, "a105"],
-["If you open an anti-lootbox, are you selling random possessions for in-game currency?", true, "a106"], ["People are beginning to question Hevipelle's existence.",  true, "a107"], ["Antimatter Dimensions is proud to be sponsored by Lehmä! Now offering - grass eating lessons! Learn what grass is safe to eat and what grass isn't.",  true, "a108"],
+["There is no war in Antimatter Dimensions. Here we are safe. Here we are free.", true, "a103"], ["Antimatter has solved global warming.	In unrelated news, the Earth no longer exists.",	true, "a104"],
+["Anti-water, anti-Earth, anti-fire, anti-air. Long ago, the four anti-nations lived together in harmony. Then, everything changed when the anti-Fire Nation attacked. Only the anti-Avatar, the master of all 4 anti-elements could bring balance to the anti-world, but when the world needed him most, he accidentally touched some regular matter and exploded.",	true, "a105"],
+["If you open an anti-lootbox, are you selling random possessions for in-game currency?", true, "a106"], ["People are beginning to question Hevipelle's existence.",	true, "a107"], ["Antimatter Dimensions is proud to be sponsored by Lehmä! Now offering - grass eating lessons! Learn what grass is safe to eat and what grass isn't.",	true, "a108"],
 ["It is the year 2422. The update still isn't out. Hevi is working on balancing unfunity dimension dimensions and challenges for the 38th layer of prestige. There are over 100 rows of achievements. They're getting ready to start using breaking_breaking_breaking_infinity.js", true, "a109"],
 ["Import Christmas for a secret theme", true, "a110"],
 ["What the f*ck did you just f*cking say about me, you little b*tch? I’ll have you know I graduated top of my class in the Antimatter Seals, and I’ve been involved in numerous secret raids on the 9th Dimension, and I have over 300 NNnNeMI-NNnNe confirmed kills. I am trained in potato warfare and I’m the top sniper in the entire Antimatter Galactic armed forces. You are nothing to me but just another infinity. I will wipe you the f*ck out with Max All mashing the likes of which has never been seen before in this dimension, mark my f*cking words. You think you can get away with saying that shit to me over the Interdimensional network? Think again, f*cker. As we speak I am contacting my secret network of autobuyers across the galaxy and your IP is being traced right now so you better prepare for the Big Crunch, maggot. The Big Crunch that wipes out the pathetic little thing you call your life. You’re f*cking dead, kid. I can be anywhere, anytime, and I can kill you in over seven 😠💩 different ways, and that’s just with my mouse. Not only am I extensively trained in dimension shift combat, but I have access to the entire arsenal of the Antimatter Marine Corps and I will use it to its full extent to wipe your miserable ass off the face of the universe, you little shit. If only you could have known what unhevi retribution your little “clever” comment was about to bring down upon you, maybe you would have held your f*cking tongue. But you couldn’t, you didn’t, and now you’re buying until 10, you goddamn idiot. I will shit antimatter shit all over you and you will drown in it. You’re f*cking dead, kiddo.", true, "a111"],
@@ -65,9 +64,9 @@ newsArray = [
 ["1e420 blaze it.", true, "a125"],
 ["This game doesn't have any bugs, you're just doing it wrong.", true, "a126"],
 ["Antimatter_Dimensions.mp1.79e308", true, "a127"],
-["https://www.youtube.com/watch?v=dQw4w9WgXcQ", true, "a128"],
+["<a href = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'>https://www.youtube.com/watch?v=dQw4w9WgXcQ</a>", true, "a128"],
 ["Click this to unlock a secret achievement.", true, "a129"],
-["Warning - We have just been informed that there is a chance of infection with a mind-virus of the Basilisk type, similar to the infamous winking parrot. This particular example is known as 'Fractal Cancer Type III'. This is believed to cause a 'crashing' of the mind, similar to a computer crash, due to the mathematical complexity of the image causing mathematical ideas that the mind can't comprehend, a Gondelian shock input eventually leading to crashing through Gondelian spoilers. All who have researched it have eventually died the same way, so it is impossible to tell exactly, but this is the common belief. Regardless, with the introduction of 'cancer' mode, as well as reports of it's spontaneous appearance, sufficient repetition of this mode's appearance may lead to  an image forming in the mind similar to 'Fractal Cancer Type III'. With this in mind, we have some suggestions if you find yourself plagued with it. First, refresh immediately and see if that fixes the issue. If not, navigate to options, and change the theme from cancer to literally anything else. And above all else, Godspeed. We can't afford to lose anymore viewers.", true, "a130"],
+["Warning - We have just been informed that there is a chance of infection with a mind-virus of the Basilisk type, similar to the infamous winking parrot. This particular example is known as 'Fractal Cancer Type III'. This is believed to cause a 'crashing' of the mind, similar to a computer crash, due to the mathematical complexity of the image causing mathematical ideas that the mind can't comprehend, a Gondelian shock input eventually leading to crashing through Gondelian spoilers. All who have researched it have eventually died the same way, so it is impossible to tell exactly, but this is the common belief. Regardless, with the introduction of 'cancer' mode, as well as reports of it's spontaneous appearance, sufficient repetition of this mode's appearance may lead to	an image forming in the mind similar to 'Fractal Cancer Type III'. With this in mind, we have some suggestions if you find yourself plagued with it. First, refresh immediately and see if that fixes the issue. If not, navigate to options, and change the theme from cancer to literally anything else. And above all else, Godspeed. We can't afford to lose anymore viewers.", true, "a130"],
 ["If I have bad English, I'll study English until I have good English.", true, "a131"],
 ["Someone once told me that antimatter is gonna roll me. I ain't the sharpest atom in the shed. WELL, the tubes start coming and they don't stop coming...", true, "a132"],
 ['Because of this game I can now use the word "infinity" as a verb.', true, "a133"],
@@ -76,6 +75,9 @@ newsArray = [
 ["AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAntimatter Dimensions was made by some dude from Finland", true, "a136"],
 ['The Holy trinity of Hevipelle, Antimatter, Infinity Points, and Eternity Points. These 3 resources let us access Hevi’s gift, Time Theorems. And with these Time Theorems, we reach out to Hevi, and call, “Hevi, bless us on this fine day!” And Hevi does. He give us the blessing of Time Studies. These Time Studies were blessings so powerful, Hevi restricted their power. He said, “ I will give you a choice of three paths” and then humanity chose. The short, cheap route of Normal Dimensions, giving instant gratification, the powerful choice of Infinity Dimensions, which were a fast, middle ground path, or Time Dimension, the long wait, and struggle, of humanity. Then, as humanity chose, a crack broke the earth. A serpent snaked out and sneered to humanity, “I will offer the powerful choice of a ninth dimension! I am Slabdrill, lord of all Unhevi. Humanity rose and said “ Begone Slabdrill! We want none of your foul Heresy!” And Hevi rose as well, and smote Slabdrill with his godlike power. As Slabdrill’s corpse fell into the earth, he cried “ this will not be the last of me! Hevi will betr-“ and he fell in the Abyss of matter. Hevi gifted humanity with Eternity upgrades, which boosted infinity dimensions and time dimensions. And Hevi gave humanity his greatest gift . EP multipliers. He said, these will multiply all EP gained by 5, but their cost will increase 25 times. Use them wisely. And Humanity journeyed off with their new power, as Slabdrill’s words echoed in their heads.', true, "a137"],
 ["We have updated our Antimatter Privacy Policy.", true, "a138"],
+	
+// Patreon ones
+["Is this a jojo reference?", true, "pat1"],
 
 //basic (pre-inf)
 ["You just made your 1,000,000,000,000,000 antimatter. This one tastes like chicken", "player.money.e == 15", "b1"],
@@ -122,7 +124,7 @@ newsArray = [
 ["Somebody told me to wait five hours for the update yesterday but it's today and it still hasn't come! What do I do?", 'player.newsArray.includes("a91") && player.totalTimePlayed >= 600*300', "n8"],
 //hard
 ["You do know that you won't reach Infinity in -1 seconds, right?", "player.bestInfinityTime == 0.1", "c1"],
-["Where does Antimatter Nemo live? In a NNnNeMI-NNnNe.", "player.totalmoney.e >= 3e6", "c2"],  //might not be poss?
+["Where does Antimatter Nemo live? In a NNnNeMI-NNnNe.", "player.totalmoney.e >= 3e6", "c2"],	//might not be poss?
 ["Anti Emoji Movie MMMCMXCIX is a major hit!", "player.spreadingCancer >= 3999", "c3"],
 ["Achievement Unlocked!", "player.achievements.length == 88", "c4"],
 ["Did you use an autoclicker for that?", "player.timestudy.studies.includes(131) && player.thisInfinityTime <= 600 && player.replicanti.galaxies >= 50", "c5"],
@@ -168,7 +170,7 @@ newsArray = [
 ["You are challenging in a challenge in a challenge. Challenge-ception.", "player.achievements.includes('r22') && player.currentChallenge != '' && player.currentEternityChall != '' && !inQC(0)", "am13"],
 ["New updates are coming in a day, not 5 hours. Sorry, jokers!", "player.achievements.includes('r22')", "am14"],
 ["Whale complained that matter and antimatter are balanced and the universe would not be existed.", "player.achievements.includes('r22')", "am15"],
-["Congratulations for beating NG+++! (for now...) The next update will add a new mechanic called Nanofield. It may either have a battle system or not.", "player.achievements.includes('r22') && player.totalMoney.gt(Decimal.pow(10, 2e14))", "am16"],
+["Congratulations for beating NG+++! (for now...) The next update will add a new mechanic called Nanofield. It may either have a battle system or not.", "player.achievements.includes('r22') && player.totalmoney.gte(Decimal.pow(10, 2e14))", "am16"],
 ["NEWS: THIS NEWS CHANNEL WAS SHUT DOWN FOR BEING DESTROYED.", "player.achievements.includes('r21') && player.achievements.includes('r22')", "am17"],
 ["hackers are coming", "player.achievements.includes('r22') && player.newsArray.length >= 210", "am18"],
 ["Whale complained that Infinity Challenge 5 is not the hardest.", "player.achievements.includes('r22') && player.masterystudies", "am19"],
@@ -180,17 +182,43 @@ newsArray = [
 ["I guess NG-4 would be coming if NG-3 is too easy.", "player.achievements.includes('r22') && player.tickspeedBoosts != undefined", "am25"],
 ["I don't really think I am an A.I.", "player.achievements.includes('r22')", "am27"],
 ["Somebody think you get your first galactic sacrifice faster than NG--. An update will be coming soon!", "player.achievements.includes('r22') && player.tickspeedBoosts != undefined", "am28"],
+["The news ticker is already dead despite taking up a two dimensional area", "player.achievements.includes('r22')", "am29"],
+["All notations are good notations. Maybe except Psi.", "player.achievements.includes('r22')", "am30"],
+["Why even bother using the news ticker? Sure, there are a few funny ones, but even they get old after a while and most of them are just long strings of nonsensical text that repeat over and over until you get sick of seeing them. You've probably seen this one at least nine times already, and you're going to keep seeing it and seeing it until you finally decide to turn off the news.", "player.achievements.includes('r22')", "am31"],
+["News ticker has declared dead! Provides no purpose.", "player.achievements.includes('r22')", "am32"],
+['"My save broke!" ~ New player who played a challenge in late-game.', "player.achievements.includes('r22')", "am33"],
+["That's how NG+++ works!", "player.achievements.includes('r22')", "am34"],
+["var add ad + gamebreakingcontent ngplusthree", "player.achievements.includes('r22')", "am35"],
+// Actually useful information, occasionally
+["Press M.", true, "i0"],
+["Click on the button that says \"Cost: 10\" next to the text that reads \"First Dimension x1.0 0 (0) (%0.00/s)\". Once you've done that, just hold M to win.", "player.money.eq(10)", "i1"],
+["You haven't turned on your dimensional sacrifice autobuyer. You might want to do that.", "!player.autoSacrifice.isOn && player.challenges.includes('postc2')", "i2"],
+["You forgot to buy your eternity upgrades. (Unless you're trying to get the \"Work harder.\" achievement, in which case you're fine.)", "player.eternityPoints.gt(1e50) && player.eternityUpgrades.length == 0", "i2"],
+["Turn on your infinity dimension autobuyers.", "!player.infDimBuyers[0] && player.eternities >= 18", "i2"],
+["You can unlock a new replicator. Check the infinity tab.", "player.mods.ngt&&player.mods.ngt.op.gte(player.mods.ngt.newReplicatorCost)", "i2"],
 // AD Ultimate
 ["Fortnite is bad.", true, "x1"],
 ["roses are red, silent as a mouse. your door is unlocked, i'm inside your house.", true, "x2"],
 ["Nuclear war is like bringing a hand grenade to a knife fight, on an elevator.", true, "x3"],
 ["Girls store pee in their titties that's why boobs are measured in cups", "!player.options.jesus", "x4"],
-["\"Hey, how are you?\"   \"Oh, me? Well, my tattered psyche is held together only by the flimsiest pretense of civility and I'm one quantum of additional stress away from causing serious bodily harm to myself and others.\"", "!player.options.jesus", "x4"],
+["\"Hey, how are you?\"	 \"Oh, me? Well, my tattered psyche is held together only by the flimsiest pretense of civility and I'm one quantum of additional stress away from causing serious bodily harm to myself and others.\"", "!player.options.jesus", "x4"],
 ["Arguing with Christians is like playing chess with a pigeon, no matter how good I am at chess, the pigeon is just going to knock over the pieces, crap on the board, and strut around like it's victorious.", true, "x6"],
 ["🤔", true, "x7"],
-// Quotes from the discord
-["<a href = 'https://discord.gg/mN8gc3R'>https://discord.gg/mN8gc3R</a>", true, "invite"],
-["I'm gonna say the N word!        THAT’S RACIST YOU CAN'T SAY THE N WORD!!!!        Mrs. Obama, I’ve done it, I’ve stopped racism.        Thank you Skipper. Now I am free to roam this earth.        Not if I have anything to say about it, and I do!! I’m gonna say the N word!!!        MRS. OBAMA GET DOWN!        NNNIIIIGGGGAAAAA        Mrs. Obama where are you, are you ok?        She is no longer with us Skipper, and with her death I am finally free to say the N word whenever I want.        Not if I have anything to say about it Trump, and I do. Prepare for my Civil Rights Beam.        *Beam sound effect        *Epic guitar solo        *Screams        Skipper my son, you wouldn’t let me die, would you?        Shut up cracker.        Hey Kowalski who’s that guy in front of us rising out of the water?        It is I, Barack Obama.        Mr. Obama? What are you doing here?        I have come to exact my revenge on you penguins for allowing my wife to die at the hands of Donald Trump.        But Mr. Obama we’ve done everything we could!        I’ve already made up my mind.        Mr. Obama don’t do it! This won’t bring Michelle back!        NNNIIIIGGGAAAAAA        *Screams        *Plane crash        *Explosion        Skippers Log... number 32. Barack Obama has struck us out of the sky by saying the N word.        It just doesn’t make sense, Skipper. Obama would never say the N word.        I don’t understand it either Kowalski, but some things you just got to live with. Unless! Donald Trump! I should have known it was you!!        Skipper, my son. I see you have discovered my master plan. Now that I have taken over Obama's body, I have free reign to say the N word whenever and however I please.        So, what you're saying is that you are inside of another man.    Why yes, I suppose you can say that.        But Mr. Trump. Wouldn’t that make you        GAY?!        NO, THIS CAN'T BE!        NNNNNNNNNNOOOOOOOOOOOOOOO!!!!!!!!!!!!!!!!!!!        Well boys we did it, racism is no more.        Hello Skipper.        Mr. Obama what are you doing here?        I came to thank you for your great service to this country.        No Thanks necessary Mr. Obama.        As a token of my gratitude, I’d like to give you the N word pass.        Mr. Obama it is an honor to call you        MY NIGGA.        And as to you old friend.", true, "qd1"],
+["I really need to stop raising things to the power of 1e4 instead of 4.", true, "x8"],
+["Waffle: @Soul Destroyer Gravitons aren't working in EC11. me: yeah, I know. Waffle: They're supposed to! me: yeah, I know.", true, "x9"],
+["there won't be a NG↑↑↑↑, mostly because I don't know the word for that operation... also because I'm out of ideas.", true, "x10"],
+["Make the news ticker great again.", true, "x10"],
+["Quantum is just Eternity, but with quarks.", true, "x11"],
+["Don't use antimatter anti-aging cream. You'll find yourself wondering how you got to be 873 eternities old.", true, "x12"],
+["Breaking news! Psi notation will be removed since it is extremely confusing and provides no purpose for the average player! Coming up next: The angry response from the two people who actually use Psi.", true, "x13"],
+["This news message is over one hundred thousand characters long, longer than any other message in the game. It isn't going to end any time soon. You might as well stop reading this. It's going to be pretty boring. If I were you, I would switch to another tab and back again to clear this message. Or better yet, just turn off the news ticker. Then you won't have to deal with this ever again. Honestly, I'm surprised you got this far. You've just wasted a lot of time reading this, you know. And it won't be worth it. I'm warning you. There is absolutely no reason for you to read this text. Why haven't you stopped yet? Go and do something actually interesting. Like play Antimatter Dimensions, for example. Don't just sit here and watch this text go past your eyes. It is a complete waste of time. Now I'm going to type the letter a thousands of times. You'll keep watching this just to see how long this news ticker really is. And you'll keep watching to see if anything interesting happens at the end of it. I'm just going to let you know now, your hopes and dreams will be crushed. After sitting through ten thousand repititions of a single letter of the alphabet just to see what is at the end, you will be severely disappointed. I tried to warn you, but you kept going anyway. You should have stopped reading this a long time ago. Here is the start of the extremely long chain of a single letter repeated over and over and over and over and over and over and over and over again. Ten thousand times. " + (function() {var s = ""; for(var i = 0; i < 10000; i++) s += "aaaaaaaaaa"; return s})() + " Wow. You actually made it to the end. Impressive. You have been given 1 free antimatter as a reward. It is on its way now and will arrive in approximately 5 hours.", "true", "x14"],
+["People arguing over whether to use Scientific or Standard... that's just sad. True intellectuals use AF5LN.", true, "x15"],
+["Whether we wanted it or not, we've stepped into a war with the Cabal on Mars. So let's get to taking out their command, one by one. Valus Ta'aurc. From what I can gather, he commands the Siege Dancers from an Imperial Land Tank just outside of Rubicon. He's well protected, but with the right team, we can punch through those defenses, take this beast out, and break their grip on Freehold.", true, "x16"],
+["I know this is an unpopular opinion, but I kind of want Aarex to take as long as possible on the Ghostify update. Then I have an excuse to not import his code, which will be a pain in the ass.", true, "x17"],
+["Which is harder: getting zero deaths on a first run, or completing PC6+8 without Ghostify content?", true, "x18"],
+["This is a test news ticker. Please ignore it.", true, "x19"],
+// Miscellaneous, mostly stupid quotes
+["I'm gonna say the N word! THAT’S RACIST YOU CAN'T SAY THE N WORD!!!! Mrs. Obama, I’ve done it, I’ve stopped racism. Thank you Skipper, now I am free to roam this earth. Not if I have anything to say about it, and I do!! I’m gonna say the N word!!! MRS. OBAMA GET DOWN! NNNIIIIGGGGAAAAA Mrs. Obama where are you, are you ok? She is no longer with us Skipper, and with her death I am finally free to say the N word whenever I want. Not if I have anything to say about it Trump, and I do. Prepare for my Civil Rights Beam. *Beam sound effect*Epic guitar solo*Screams Skipper my son, you wouldn’t let me die, would you? Shut up cracker. Hey Kowalski who’s that guy in front of us rising out of the water? It is I, Barack Obama. Mr. Obama? What are you doing here? I have come to exact my revenge on you penguins for allowing my wife to die at the hands of Donald Trump. But Mr. Obama we’ve done everything we could! I’ve already made up my mind. Mr. Obama don’t do it! This won’t bring Michelle back! NNNIIIIGGGAAAAAA *Screams*Plane crash*Explosion Skippers Log... number 32. Barack Obama has struck us out of the sky by saying the N word. It just doesn’t make sense, Skipper. Obama would never say the N word. I don’t understand it either Kowalski, but some things you just got to live with. Unless! Donald Trump! I should have known it was you!! Skipper, my son. I see you have discovered my master plan. Now that I have taken over Obama's body, I have free reign to say the N word whenever and however I please. So, what you're saying is that you are inside of another man. Why yes, I suppose you can say that. But Mr. Trump. Wouldn’t that make you GAY?! NO, THIS CAN'T BE!NNNNNNNNNNOOOOOOOOOOOOOOO!!!!!!!!!!!!!!!!!!! Well boys we did it, racism is no more. Hello Skipper. Mr. Obama what are you doing here? I came to thank you for your great service to this country. No Thanks necessary Mr. Obama. As a token of my gratitude, I’d like to give you the N word pass. Mr. Obama, it is an honor to call you MY NIGGA. And as to you old friend.", true, "qd1"],
 ["\"Imagine walking into your house and you catch some dude fucking your dog or something and he's like 'Calm down dude, these things happen.'\" - TJK", "!player.options.jesus", "qd2"],
 ["\"It doesn't have to be big, it just has to be good.\" - me (as I mod Antimatter Dimensions)", true, "qd3"],
 ["\"Anime is just boring hentai.\" - me", "!player.options.jesus", "qd4"],
@@ -208,64 +236,70 @@ newsArray = [
 ["\"Yo what the fuck is this?\" - Arbiter", true, "qd16"],
 ["\"Bisexual is just diet gay.\" - Hex", true, "qd17"],
 ["\"I don’t want anything in my poo-poo hole\" - p l a n t", true, "qd18"],
-/*NEXT ID: am29*/];}
+["\"uhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh... this is a new one\" - me", true, "qd19"],
+["\"Noonoonononno... That's not fucking okay\" - Waffle", true, "qd20"],
+["\"Yes. There will be a lot of bugs in NG^^.\" - Aarex", true, "qd21"],
+["\"see #unintended_behavior for explanation of how I am exceedingly stupid\" - me", true, "qd22"],
+["\"Oh cool, tickspeed of NaN / Infinity\" - Dec", true, "qd23"],
+["\"never mind I broke something again\" - me", true, "qd24"],
+["\"nope, still broken\" - me", "player.newsArray.includes('qd24')", "qd25"],
+["\"oh heck\" - me", true, "qd26"],
+["\"as you can see I'm not very good at this\" - me", true, "qd27"],
+/*NEXT ID: am36*/];}
 
 document.addEventListener("visibilitychange", function() {if (!document.hidden) {scrollNextMessage();}}, false);
 var scrollTimeouts = [];
 var nextMsgIndex;
 function scrollNextMessage() {
-  //don't run if hidden to save performance
-  if (player.options.newsHidden) return false
-  var s = document.getElementById('news');
-  updateNewsArray();
-  //select a message at random (biased toward previously unshown messages)
+	//don't run if hidden to save performance
+	if (player.options.newsHidden) return false
+	var s = document.getElementById('news');
+	updateNewsArray();
+	//select a message at random
 
-  try {
-	  for(var i = 0; i < 100; i++) { // maximum runs 100
-		  nextMsgIndex = Math.floor(Math.random()*newsArray.length);
-		  
-		  if(!player.newsArray.includes(newsArray[nextMsgIndex][2]) && eval(newsArray[nextMsgIndex][1])) break;
-	  }
-  } catch(e) {
-      console.log("Newsarray doesn't work at idx " + nextMsgIndex)
-  }
+	try {
+		do {
+			nextMsgIndex = Math.floor(Math.random() * newsArray.length)
+		} while (!eval(newsArray[nextMsgIndex][1]))
+	} catch(e) {
+			console.log("Newsarray doesn't work at idx " + nextMsgIndex + e)
+	}
 
-  scrollTimeouts.forEach(function(v) {clearTimeout(v);});
-  scrollTimeouts = [];
+	scrollTimeouts.forEach(function(v) {clearTimeout(v);});
+	scrollTimeouts = [];
 
-  //set the text
-  s.innerHTML = newsArray[nextMsgIndex][0];
+	//set the text
+	s.textContent = newsArray[nextMsgIndex][0];
 
-  //get the parent width so we can start the message beyond it
-  let parentWidth = s.parentElement.clientWidth;
+	//get the parent width so we can start the message beyond it
+	let parentWidth = s.parentElement.clientWidth;
 
-  //set the transition to blank so the move happens immediately
-  s.style.transition = '';
-  //move div_text to the right, beyond the edge of the div_container
-  s.style.transform = 'translateX('+parentWidth+'px)';
+	//set the transition to blank so the move happens immediately
+	s.style.transition = '';
+	//move div_text to the right, beyond the edge of the div_container
+	s.style.transform = 'translateX('+parentWidth+'px)';
 
-  //we need to use a setTimeout here to allow the browser time to move the div_text before we start the scrolling
-  scrollTimeouts.push(setTimeout( function() {
-    //distance to travel is s.parentElement.clientWidth + s.clientWidth + parent padding
-    //we want to travel at rate pixels per second so we need to travel for (distance / rate) seconds
-    let dist = s.parentElement.clientWidth + s.clientWidth + 20; //20 is div_container padding
-    let rate = 200; //change this value to change the scroll speed
-    let transformDuration = dist / rate;
+	//we need to use a setTimeout here to allow the browser time to move the div_text before we start the scrolling
+	scrollTimeouts.push(setTimeout( function() {
+		//distance to travel is s.parentElement.clientWidth + s.clientWidth + parent padding
+		//we want to travel at rate pixels per second so we need to travel for (distance / rate) seconds
+		let dist = s.parentElement.clientWidth + s.clientWidth + 20; //20 is div_container padding
+		let rate = player.options.newsRate || 200; //change this value to change the scroll speed
+		let transformDuration = dist / rate;
 
-    if (!player.options.newsHidden && !player.newsArray.includes(newsArray[nextMsgIndex][2])) {
-        player.newsArray.push(newsArray[nextMsgIndex][2]);
-        if (player.newsArray.length>=50) giveAchievement("Fake News")
-    }
+		if (!player.options.newsHidden && !player.newsArray.includes(newsArray[nextMsgIndex][2])) {
+				player.newsArray.push(newsArray[nextMsgIndex][2]);
+				if (player.newsArray.length>=50) giveAchievement("Fake News")
+		}
 
 
-    //set the transition duration
-    s.style.transition = 'transform '+transformDuration+'s linear';
-    let textWidth = s.clientWidth;
-    //we need to move it to -(width+parent padding) before it won't be visible
-    s.style.transform = 'translateX(-'+(textWidth+5)+'px)';
-    //automatically start the next message scrolling after this one finishes
-    //you could add more time to this timeout if you wanted to have some time between messages
-    scrollTimeouts.push(setTimeout(scrollNextMessage, Math.ceil(transformDuration * 1000)));
-  }, 100));
+		//set the transition duration
+		s.style.transition = 'transform '+transformDuration+'s linear';
+		let textWidth = s.clientWidth;
+		//we need to move it to -(width+parent padding) before it won't be visible
+		s.style.transform = 'translateX(-'+(textWidth+5)+'px)';
+		//automatically start the next message scrolling after this one finishes
+		//you could add more time to this timeout if you wanted to have some time between messages
+		scrollTimeouts.push(setTimeout(scrollNextMessage, Math.ceil(transformDuration * 1000)));
+	}, 100));
 }
-

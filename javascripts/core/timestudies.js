@@ -3,10 +3,12 @@ presets={}
 // Time studies
 
 function buyWithAntimatter() {
+	if(!player.timestudy.totalTheorem) player.timestudy.totalTheorem = 0;
   if (player.money.gte(player.timestudy.amcost)) {
       player.money = player.money.minus(player.timestudy.amcost)
       player.timestudy.amcost = player.timestudy.amcost.times(new Decimal("1e20000"))
       player.timestudy.theorem += 1
+		player.timestudy.totalTheorem += 1
       updateTheoremButtons()
       updateTimeStudyButtons()
       return true
@@ -14,10 +16,12 @@ function buyWithAntimatter() {
 }
 
 function buyWithIP() {
+	if(!player.timestudy.totalTheorem) player.timestudy.totalTheorem = 0;
   if (player.infinityPoints.gte(player.timestudy.ipcost)) {
       player.infinityPoints = player.infinityPoints.minus(player.timestudy.ipcost)
       player.timestudy.ipcost = player.timestudy.ipcost.times(1e100)
       player.timestudy.theorem += 1
+		player.timestudy.totalTheorem += 1
       updateTheoremButtons()
       updateTimeStudyButtons()
       return true
@@ -25,6 +29,7 @@ function buyWithIP() {
 }
 
 function buyWithEP() {
+	if(!player.timestudy.totalTheorem) player.timestudy.totalTheorem = 0;
   if (player.timeDimension1.bought < 1) {
       alert("You need to buy at least 1 time dimension before you can purchase theorems with Eternity points.")
       return false;
@@ -33,6 +38,7 @@ function buyWithEP() {
       player.eternityPoints = player.eternityPoints.minus(player.timestudy.epcost)
       player.timestudy.epcost = player.timestudy.epcost.times(2)
       player.timestudy.theorem += 1
+		player.timestudy.totalTheorem += 1
       updateTheoremButtons()
       updateTimeStudyButtons()
       updateEternityUpgrades()
@@ -41,9 +47,11 @@ function buyWithEP() {
 }
 
 function maxTheorems() {
+	if(!player.timestudy.totalTheorem) player.timestudy.totalTheorem = 0;
 	var gainTT = Math.floor((player.money.log10() - player.timestudy.amcost.log10()) / 20000 + 1)
 	if (gainTT > 0) {
 		player.timestudy.theorem += gainTT
+		player.timestudy.totalTheorem += gainTT
 		player.timestudy.amcost = player.timestudy.amcost.times(Decimal.pow("1e20000", gainTT))
 		player.money = player.money.sub(player.timestudy.amcost.div("1e20000"))
 	}
@@ -51,6 +59,7 @@ function maxTheorems() {
 	gainTT = Math.floor((player.infinityPoints.log10() - player.timestudy.ipcost.log10()) / 100 + 1)
 	if (gainTT > 0) {
 		player.timestudy.theorem += gainTT
+		player.timestudy.totalTheorem += gainTT
 		player.timestudy.ipcost = player.timestudy.ipcost.times(Decimal.pow("1e100", gainTT))
 		player.infinityPoints = player.infinityPoints.sub(player.timestudy.ipcost.div("1e100"))
 	}
@@ -58,6 +67,7 @@ function maxTheorems() {
 	gainTT = Math.floor(player.eternityPoints.div(player.timestudy.epcost).plus(1).log2())
 	if (gainTT > 0 && player.timeDimension1.bought > 0) {
 		player.timestudy.theorem += gainTT
+		player.timestudy.totalTheorem += gainTT
 		player.eternityPoints = player.eternityPoints.sub(Decimal.pow(2, gainTT).sub(1).times(player.timestudy.epcost))
 		if (!break_infinity_js && isNaN(player.eternityPoints.logarithm)) player.eternityPoints = new Decimal(0)
 		player.timestudy.epcost = player.timestudy.epcost.times(Decimal.pow(2, gainTT))
@@ -137,9 +147,12 @@ function buyTimeStudy(name, check, quickBuy) {
 }
 
 function buyDilationStudy(name, cost) {
+	if (name > 1 && name < 6 && player.mods.ngt) {
+		cost = cost**7
+	}
     if (player.timestudy.theorem >= cost && !player.dilation.studies.includes(name) && (player.dilation.studies.includes(name-1)||name<2)) {
         if (name < 2) {
-            if (ECTimesCompleted("eterc11")+ECTimesCompleted("eterc12")<10||getTotalTT(player)<13000) return
+            if (ECTimesCompleted("eterc11")+ECTimesCompleted("eterc12")<10||getTotalTT(player)<13000||(player.mods.ngt&&player.mods.ngt.op.lt(getDilationRequirement()))) return
             showEternityTab("dilation")
             document.getElementById("dilstudy1").innerHTML = "Unlock time dilation<span>Cost: 5000 Time Theorems"
             if (player.eternityUpgrades.length<1) giveAchievement("Work harder.")
@@ -166,6 +179,7 @@ function hasRow(row) {
 }
 
 function canBuyStudy(name) {
+  if(name > 1000) return true;
   var row = Math.floor(name/10)
   var col = name%10
   if (name == 33) {
@@ -184,6 +198,7 @@ function canBuyStudy(name) {
   }
 
   if (name == 181) {
+	  if(player.mods.ngt) return true;
       if (player.eternityChalls.eterc1 !== undefined && player.eternityChalls.eterc2 !== undefined && player.eternityChalls.eterc3 !== undefined && player.timestudy.studies.includes(171)) return true; else return false;
   }
   if (name == 201) if(player.timestudy.studies.includes(192) && !player.dilation.upgrades.includes(8)) return true; else return false
@@ -222,7 +237,7 @@ function canBuyStudy(name) {
 
       case 7:
       if (!player.timestudy.studies.includes(61)) return false;
-      if (player.dilation.upgrades.includes(8)) return true;
+      if (player.dilation.upgrades.includes(8) || hasUpg(13)) return true;
       var have = player.timestudy.studies.filter(function(x) {return Math.floor(x / 10) == 7}).length;
       if (player.timestudy.studies.includes(201)) return have < 2;
       return have < 1;
@@ -233,18 +248,19 @@ function canBuyStudy(name) {
       break;
 
       case 22:
-      if (player.timestudy.studies.includes(210 + Math.round(col/2)) && (((name%2 == 0) ? !player.timestudy.studies.includes(name-1) : !player.timestudy.studies.includes(name+1)) || (player.masterystudies ? player.masterystudies.includes("t302") : false))) return true; else return false
+      if (player.timestudy.studies.includes(210 + Math.round(col/2)) && (((name%2 == 0) ? !player.timestudy.studies.includes(name-1) : !player.timestudy.studies.includes(name+1)) || (player.masterystudies ? player.masterystudies.includes("t302") : !!player.mods.ngt))) return true; else return false
       break;
 
       case 23:
-      if ( (player.timestudy.studies.includes(220 + Math.floor(col*2)) || player.timestudy.studies.includes(220 + Math.floor(col*2-1))) && (!player.timestudy.studies.includes((name%2 == 0) ? name-1 : name+1) || (player.masterystudies ? player.masterystudies.includes("t302") : false))) return true; else return false;
+      if ( (player.timestudy.studies.includes(220 + Math.floor(col*2)) || player.timestudy.studies.includes(220 + Math.floor(col*2-1))) && (!player.timestudy.studies.includes((name%2 == 0) ? name-1 : name+1) || (player.masterystudies ? player.masterystudies.includes("t302") : !!player.mods.ngt))) return true; else return false;
       break;
   }
 }
 
-var all = [11, 21, 22, 33, 31, 32, 41, 42, 51, 61, 62, 71, 72, 73, 81, 82 ,83, 91, 92, 93, 101, 102, 103, 111, 121, 122, 123, 131, 132, 133, 141, 142, 143, 151, 161, 162, 171, 181, 191, 192, 193, 201, 211, 212, 213, 214, 221, 222, 223, 224, 225, 226, 227, 228, 231, 232, 233, 234]
-var studyCosts = [1, 3, 2, 2, 3, 2, 4, 6, 3, 3, 3, 4, 6, 5, 4, 6, 5, 4, 5, 7, 4, 6, 6, 12, 9, 9, 9, 5, 5, 5, 4, 4, 4, 8, 7, 7, 15, 200, 400, 730, 300, 900, 120, 150, 200, 120, 900, 900, 900, 900, 900, 900, 900, 900, 500, 500, 500, 500]
+var all =        [11, 21, 22, 33, 31, 32, 41, 42, 51, 61, 62, 71, 72, 73, 81, 82 ,83, 91, 92, 93, 101, 102, 103, 111, 121, 122, 123, 131, 132, 133, 141, 142, 143, 151, 161, 162, 171, 181, 191, 192, 193, 201, 211, 212, 213, 214, 221, 222, 223, 224, 225, 226, 227, 228, 231, 232, 233, 234, 1001, 1011, 1012]
+var studyCosts = [ 1,  3,  2,  2,  3,  2,  4,  6,  3,  3,  3,  4,  6,  5,  4,  6,  5,  4,  5,  7,   4,   6,   6,  12,   9,   9,   9,   5,   5,   5,   4,   4,   4,   8,   7,   7,  15, 200, 400, 730, 300, 900, 120, 150, 200, 120, 900, 900, 900, 900, 900, 900, 900, 900, 500, 500, 500, 500,   60,  1e4,  1e4]
 function updateTimeStudyButtons() {
+	
   if (player.boughtDims) {
       var locked=getTotalTT(player)<60
       document.getElementById("nextstudy").textContent=locked?"Next time study set unlock at 60 total Time Theorems.":""
@@ -303,7 +319,7 @@ function updateTimeStudyButtons() {
 
   for (i=1; i<7; i++) {
     if (player.dilation.studies.includes(i)) document.getElementById("dilstudy"+i).className = "dilationupgbought"
-    else if (player.timestudy.theorem >= ([null, 5e3, 1e6, 1e7, 1e8, 1e9, 1e24])[i] && (player.dilation.studies.includes(i-1) || (i<2 && ECTimesCompleted("eterc11") > 4 && ECTimesCompleted("eterc12") > 4 && getTotalTT(player) >= 13e3))) document.getElementById("dilstudy"+i).className = "dilationupg"
+    else if (player.timestudy.theorem >= ([null, 5e3, 1e6, 1e7, 1e8, 1e9, 1e24])[i] && (player.dilation.studies.includes(i-1) || (i<2 && ECTimesCompleted("eterc11") > 4 && ECTimesCompleted("eterc12") > 4 && getTotalTT(player) >= 13e3 && player.mods.ngt ? player.mods.ngt.op.gt(getDilationRequirement()) : true))) document.getElementById("dilstudy"+i).className = "dilationupg"
     else document.getElementById("dilstudy"+i).className = "timestudylocked"
   }
   document.getElementById("dilstudy6").style.display = player.meta ? "" : "none"
@@ -352,60 +368,12 @@ function respecTimeStudies(force) {
        } else {
           for (var i=0; i<all.length; i++) {
               if (player.timestudy.studies.includes(all[i])) {
-                  player.timestudy.theorem += studyCosts[i]
                   gotAch=false
               }
           }
-          player.timestudy.studies = []
-          switch(player.eternityChallUnlocked) {
-              case 1:
-              player.timestudy.theorem += 30
-              break;
-
-              case 2:
-              player.timestudy.theorem += 35
-              break;
-
-              case 3:
-              player.timestudy.theorem += 40
-              break;
-
-              case 4:
-              player.timestudy.theorem += 70
-              break;
-
-              case 5:
-              player.timestudy.theorem += 130
-              break;
-
-              case 6:
-              player.timestudy.theorem += 85
-              break;
-
-              case 7:
-              player.timestudy.theorem += 115
-              break;
-
-              case 8:
-              player.timestudy.theorem += 115
-              break;
-
-              case 9:
-              player.timestudy.theorem += 415
-              break;
-
-              case 10:
-              player.timestudy.theorem += 550
-              break;
-
-              case 11:
-              player.timestudy.theorem += 1
-              break;
-
-              case 12:
-              player.timestudy.theorem += 1
-              break;
-          }
+          if (player.masterystudies) if (player.timestudy.studies.length>1) player.quantum.wasted = false
+          player.timestudy.theorem = player.timestudy.totalTheorem
+		  player.timestudy.studies = []
        }
   } else if (respecMastery) {
       var respecedTS=[]
@@ -435,6 +403,7 @@ function respecTimeStudies(force) {
               gotAch=false
           } else respecedMS.push(player.masterystudies[id])
       }
+      if (player.masterystudies.length>respecedMS.length) player.quantum.wasted = false
       player.masterystudies=respecedMS
       maybeShowFillAll()
       drawMasteryTree()
@@ -453,15 +422,7 @@ function respecTimeStudies(force) {
 }
 
 function getTotalTT(tree) {
-	var result=tree.timestudy.theorem
-	if (tree.boughtDims) {
-		for (id=1;id<7;id++) result+=tree.timestudy.ers_studies[id]*(tree.timestudy.ers_studies[id]+1)/2
-		return result
-	} else {
-		var ecCosts=[0,30,35,40,70,130,85,115,115,415,550,1,1]
-		for (id=0;id<all.length;id++) if (tree.timestudy.studies.includes(all[id])) result+=studyCosts[id]
-		return result+ecCosts[player.eternityChallUnlocked]
-	}
+	return tree.timestudy.totalTheorem
 }
 
 function exportSpec() {
@@ -552,7 +513,7 @@ function importStudyTree(input) {
 			if ((study<120||study>150||(secondSplitPick<1||study%10==secondSplitPick))&&(study<220||study>240||earlyDLStudies.includes(study+(study%2>0?-1:1)))) {
 				if (study>120&&study<150) secondSplitPick=study%10
 				else if (study>220&&study<240) earlyDLStudies.push(study)
-				if (study>240) buyMasteryStudy("t", study, true)
+				if (study>240 && study<1000) buyMasteryStudy("t", study, true)
 				else buyTimeStudy(study, 0, true);
 			} else if (study<150) laterSecondSplits.push(study)
 			else laterDLStudies.push(study)
@@ -568,7 +529,7 @@ function importStudyTree(input) {
 			} else document.getElementById("ec"+parseInt(input.split("|")[1])+"unl").click();
 			setTimeout(function(){ justImported = false; }, 100);
 		}
-		if (player.masterystudies.length > oldLengthMS) {
+		if(player.masterystudies) if (player.masterystudies.length > oldLengthMS) {
 			updateMasteryStudyButtons()
 			updateMasteryStudyTextDisplay()
 			drawMasteryTree()

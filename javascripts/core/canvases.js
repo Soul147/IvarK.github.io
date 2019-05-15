@@ -140,7 +140,7 @@ function drawTreeBranch(num1, num2) {
         } else if (name2 == 123 || name2 == 133 || name2 == 143 || name1 == 143) {
             ctx.strokeStyle="#0080ff";
         } else {
-            ctx.strokeStyle="#000000";
+            ctx.strokeStyle="#111111";
         }
     } else {
         if (name2 == 6 && isDilStudyName && player.options.theme == "Aarex's Modifications") {
@@ -163,7 +163,7 @@ function drawTreeBranch(num1, num2) {
             ctx.strokeStyle="#444";
         }
     }
-    if (num2 == "secretstudy") ctx.strokeStyle="#000000";
+    if (num2 == "secretstudy") ctx.strokeStyle="#111111";
     ctx.moveTo(x1, y1);
     ctx.lineTo(x2, y2);
     ctx.stroke();
@@ -177,6 +177,9 @@ function drawStudyTree() {
     drawTreeBranch("21", "31");
     drawTreeBranch("21", "33");
     drawTreeBranch("22", "32");
+    drawTreeBranch("22", "1001");
+    drawTreeBranch("33", "1011");
+    drawTreeBranch("1001", "1012");
     drawTreeBranch("31", "41");
     drawTreeBranch("32", "42");
     drawTreeBranch("41", "51");
@@ -226,41 +229,51 @@ function drawStudyTree() {
     drawTreeBranch("ec1unl", "181")
     drawTreeBranch("ec2unl", "181")
     drawTreeBranch("ec3unl", "181")
-    drawTreeBranch("181", "ec10unl")
-    drawTreeBranch("ec10unl", "191")
-    drawTreeBranch("ec10unl", "192")
-    drawTreeBranch("ec10unl", "193")
-    drawTreeBranch("191", "211")
-    drawTreeBranch("191", "212")
-    drawTreeBranch("192", "201")
-    drawTreeBranch("193", "213")
-    drawTreeBranch("193", "214")
-    drawTreeBranch("211", "221")
-    drawTreeBranch("211", "222")
-    drawTreeBranch("212", "223")
-    drawTreeBranch("212", "224")
-    drawTreeBranch("213", "225")
-    drawTreeBranch("213", "226")
-    drawTreeBranch("214", "227")
-    drawTreeBranch("214", "228")
-    drawTreeBranch("221", "231")
-    drawTreeBranch("222", "231")
-    drawTreeBranch("223", "232")
-    drawTreeBranch("224", "232")
-    drawTreeBranch("225", "233")
-    drawTreeBranch("226", "233")
-    drawTreeBranch("227", "234")
-    drawTreeBranch("228", "234")
-    drawTreeBranch("231", "ec11unl")
-    drawTreeBranch("232", "ec11unl")
-    drawTreeBranch("233", "ec12unl")
-    drawTreeBranch("234", "ec12unl")
-    drawTreeBranch("ec11unl", "dilstudy1")
-    drawTreeBranch("ec12unl", "dilstudy1")
-    drawTreeBranch("dilstudy1", "dilstudy2")
-    drawTreeBranch("dilstudy2", "dilstudy3")
-    drawTreeBranch("dilstudy3", "dilstudy4")
-    drawTreeBranch("dilstudy4", "dilstudy5")
+	drawTreeBranch("181", "ec10unl")
+	if(player.mods.ngt) {
+		drawTreeBranch("181", "autochallenge1")
+		drawTreeBranch("181", "autochallenge2")
+	}
+	if((player.mods.ngt && player.mods.ngt.omni) || !player.mods.ngt) {
+		drawTreeBranch("ec10unl", "191")
+		drawTreeBranch("ec10unl", "192")
+		drawTreeBranch("ec10unl", "193")
+		drawTreeBranch("191", "211")
+		drawTreeBranch("191", "212")
+		drawTreeBranch("192", "201")
+		drawTreeBranch("193", "213")
+		drawTreeBranch("193", "214")
+		drawTreeBranch("211", "221")
+		drawTreeBranch("211", "222")
+		drawTreeBranch("212", "223")
+		drawTreeBranch("212", "224")
+		drawTreeBranch("213", "225")
+		drawTreeBranch("213", "226")
+		drawTreeBranch("214", "227")
+		drawTreeBranch("214", "228")
+		drawTreeBranch("221", "231")
+		drawTreeBranch("222", "231")
+		drawTreeBranch("223", "232")
+		drawTreeBranch("224", "232")
+		drawTreeBranch("225", "233")
+		drawTreeBranch("226", "233")
+		drawTreeBranch("227", "234")
+		drawTreeBranch("228", "234")
+		drawTreeBranch("231", "ec11unl")
+		drawTreeBranch("232", "ec11unl")
+		drawTreeBranch("233", "ec12unl")
+		drawTreeBranch("234", "ec12unl")
+	}
+	else {
+		drawTreeBranch("ec10unl", "ec11unl")
+		drawTreeBranch("ec10unl", "ec12unl")
+	}
+	drawTreeBranch("ec11unl", "dilstudy1")
+	drawTreeBranch("ec12unl", "dilstudy1")
+	drawTreeBranch("dilstudy1", "dilstudy2")
+	drawTreeBranch("dilstudy2", "dilstudy3")
+	drawTreeBranch("dilstudy3", "dilstudy4")
+	drawTreeBranch("dilstudy4", "dilstudy5")
     if (player.meta) drawTreeBranch("dilstudy5", "dilstudy6")
     if (player.masterystudies) drawTreeBranch("dilstudy6", "masteryportal")
     if (shiftDown && document.getElementById("eternitystore").style.display !== "none" && document.getElementById("timestudies").style.display !== "none") {
@@ -272,7 +285,7 @@ function drawStudyTree() {
             ctx.strokeStyle = 'black';
             ctx.lineWidth = 3;
             ctx.font = "15px Typewriter";
-            if (document.getElementById(all[i]).className.split(" ")[1] !== undefined || all[i] > 220) {
+            if (document.getElementById(all[i]).className.split(" ")[1] !== undefined || all[i] > 220 && all[i] < 1000) {
                 var tempName = document.getElementById(all[i]).className.split(" ")[1];
                 var name;
                 if (all[i] == 222 || all[i] == 223 || all[i] == 226 || all[i] == 227 || all[i] == 232 || all[i] == 233) name = "dark"

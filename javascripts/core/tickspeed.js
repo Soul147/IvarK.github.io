@@ -1,7 +1,8 @@
 function canBuyTickSpeed() {
   if (player.currentEternityChall == "eterc9") return false
   if (player.galacticSacrifice) if (player.currentChallenge=="challenge14"&&player.tickBoughtThisInf.current>307) return false
-  return canBuyDimension(3);
+  if (inOC(2)) return false;
+  return !!(canBuyDimension(3) + (player.eternities >= 30));
 }
 
 function getGalaxyPower(ng, bi) {
@@ -28,7 +29,7 @@ function getGalaxyPowerEff(ng, bi) {
 	let eff = 1
 	if (player.galacticSacrifice) if (player.galacticSacrifice.upgrades.includes(22)) eff *= 5;
 	if (player.infinityUpgrades.includes("galaxyBoost")) eff *= 2;
-	if (player.infinityUpgrades.includes("postGalaxy")) eff *= player.galacticSacrifice ? 1.7 : 1.5;
+	if (player.infinityUpgrades.includes("postGalaxy")) eff *= player.mods.ngt ? 1.69 : (player.galacticSacrifice ? 1.7 : 1.5);
 	if (player.challenges.includes("postc5")) eff *= player.galacticSacrifice ? 1.3 : 1.1;
 	if (player.achievements.includes("r86")) eff *= player.galacticSacrifice ? 1.05 : 1.01
 	if (player.galacticSacrifice) {
@@ -39,10 +40,11 @@ function getGalaxyPowerEff(ng, bi) {
 	if (player.achievements.includes("ngpp8") && player.meta != undefined) eff *= 1.001;
 	if (player.timestudy.studies.includes(212)) eff *= Math.min(Math.pow(player.timeShards.max(2).log2(), 0.005), 1.1)
 	if (player.timestudy.studies.includes(232)&&bi) {
-		let exp = 0.2
-		if (player.masterystudies != undefined) if (player.galaxies >= 1e4) exp *= 6 - player.galaxies / 2e3
+		let exp = player.mods.ngt ? 0.02 : 0.2
+		if (player.masterystudies != undefined && !player.mods.ngt) if (player.galaxies >= 1e4) exp *= 6 - player.galaxies / 2e3
 		eff *= Math.pow(1+ng/1000, exp)
 	}
+	if(compOC(2)) eff *= 1+ngt.t.reward[1]/100;
 	eff *= colorBoosts.r
 	if (GUBought("rg2")) eff *= Math.pow(player.dilation.freeGalaxies/5e3+1,0.25)
 	if (GUBought("rg4")) eff *= 1.5
@@ -51,18 +53,18 @@ function getGalaxyPowerEff(ng, bi) {
 
 function getTickSpeedMultiplier() {
 	div = 1.001
-	
+
 	let realnormalgalaxies = player.galaxies
-	if (player.masterystudies) realnormalgalaxies = Math.max(player.galaxies-player.quantum.electrons.sacGals,0)
+	if (player.masterystudies) realnormalgalaxies = Math.max((player.galaxies-player.quantum.electrons.sacGals)*Math.max(Math.min(10-player.quantum.electrons.amount.div(16857).toNumber(),1),0),0)
 	if (player.tickspeedBoosts != undefined) if (player.galacticSacrifice.upgrades.includes(34)) realnormalgalaxies += 4
 	if (player.currentChallenge == "postc3" || isIC3Trapped()) {
-		if (player.currentChallenge=="postcngmm_3" || player.challenges.includes("postcngmm_3")) {
+		if (player.currentChallenge=="postcngmm_3" || (player.challenges.includes("postcngmm_3") && player.tickspeedBoosts === undefined)) {
 			if (GUBought("rg4")) realnormalgalaxies *= 0.4
 			return Decimal.pow(0.998, getGalaxyPower(realnormalgalaxies) * getGalaxyPowerEff(realnormalgalaxies, true))
 		}
 		return 1;
 	}
-	if (inQC(2)) return 0.89/(player.achievements.includes("r27")&&player.mods.ac?div:1)
+	if (inQC(2) || inOC(3)) return 0.89/(player.achievements.includes("r27")&&player.mods.ac?div:1)
 	let inERS = player.boughtDims != undefined || player.infinityUpgradesRespecced != undefined
 	let galaxies
 	let baseMultiplier
@@ -97,9 +99,9 @@ function getTickSpeedMultiplier() {
 		galaxies = getGalaxyPower(realnormalgalaxies) * getGalaxyPowerEff(realnormalgalaxies, true)
 	}
 	let perGalaxy = player.infinityUpgradesRespecced != undefined ? 0.98 : 0.965
-	
+
 	if(player.achievements.includes("r27")&&player.mods.ac) baseMultiplier /= 1.1
-	
+
 	return Decimal.pow(perGalaxy, galaxies-linearGalaxies).times(baseMultiplier).divide(player.achievements.includes("r27")&&player.mods.ac?div:1)
 }
 

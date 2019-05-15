@@ -43,6 +43,7 @@ function DimensionProduction(tier) {
   if (player.currentEternityChall == "eterc11") return ret
   if (player.currentEternityChall == "eterc7") ret = ret.dividedBy(player.tickspeed.dividedBy(1000))
   ret = ret.times(DimensionPower(tier))
+  if(inOC(4)) ret = ret.pow(0.25);
   if (player.challenges.includes("postc6")&&!inQC(3)) {
       let tick = new Decimal(player.tickspeed)
       if (player.dilation.active || player.galacticSacrifice) {
@@ -70,6 +71,7 @@ function DimensionPower(tier) {
   if (player.achievements.includes("r94") && tier == 1) mult = mult.times(2);
   if (player.achievements.includes("r75") && !player.boughtDims) mult = mult.times(player.achPow);
   if (player.replicanti.unl && player.replicanti.amount.gt(1)) mult = mult.times(getIDReplMult())
+  if(player.mods.ngt) mult = mult.multiply(getGravitonEffect());
 
   if (player.timestudy.studies.includes(72) && tier == 4) {
       mult = mult.times(calcTotalSacrificeBoost().pow(0.04).max(1).min("1e30000"))
@@ -80,7 +82,8 @@ function DimensionPower(tier) {
   }
 
   if (player.eternityUpgrades.includes(1)) {
-      mult = mult.times(player.eternityPoints.plus(1))
+      if(player.mods.ngt) mult = mult.times(player.eternityPoints.pow(1.5).plus(1))
+      else mult = mult.times(player.eternityPoints.plus(1))
   }
 
   if (player.eternityUpgrades.includes(2)) mult = mult.times(getEU2Mult())
@@ -222,9 +225,12 @@ function buyMaxInfDims(tier) {
 }
 
 function getInfinityPowerEffectPower() {
-	if (player.currentChallenge == "postcngm3_2") return Math.max(player.galaxies, 7)
-	if (player.currentChallenge.includes("postcngm3_2")) return Math.max(Math.pow(player.galaxies + (player.resets + player.tickspeedBoosts) / 24, 0.7), 7)
-	return Math.max(player.galacticSacrifice ? Math.pow(player.galaxies, 0.7) : 0, 7)
+	if (player.galacticSacrifice != undefined) {
+		if (player.currentChallenge == "postcngm3_2") return Math.max(player.galaxies, 7)
+		if (player.currentChallenge.includes("postcngm3_2")) return Math.max(Math.pow(player.galaxies + (player.resets + player.tickspeedBoosts) / 24, 0.7), 7)
+		return Math.max(Math.pow(player.galaxies, 0.7), 7)
+	}
+	return 7
 }
 
 function switchAutoInf(tier) {
@@ -266,18 +272,22 @@ function loadInfAutoBuyers() {
 var infDimPow = 1
 
 function getIDReplMult() {
-	if (player.masterystudies) if (player.masterystudies.includes('t311')) return getReplMult().pow(17.3)
-	return getReplMult()
+	ret = getReplMult()
+	if (player.masterystudies) if (player.masterystudies.includes('t311')) ret = ret.pow(17.3)
+	if(hasUpg(16)) ret = ret.pow(getUpgEff(16))
+	return ret;
 }
 
 function getEU2Mult() {
 	if (player.boughtDims) return Decimal.pow(getEternitied(), Math.log(getEternitied()*2+1)/Math.log(4))
 	var cap = Math.min(getEternitied(), 100000)
 	var soft = getEternitied() - cap
-	return Decimal.pow(cap/200 + 1, Math.log(cap*2+1)/Math.log(4)).times(new Decimal(soft/200 + 1).times(Math.log(soft*2+1)/Math.log(4)).max(1)).max(player.achievements.includes("ngpp15")?Decimal.pow(10, Math.pow(Math.log10(getEternitied()), 4.75)):1)
+	ret = Decimal.pow(cap/200 + 1, Math.log(cap*2+1)/Math.log(4)).times(new Decimal(soft/200 + 1).times(Math.log(soft*2+1)/Math.log(4)).max(1)).max(player.achievements.includes("ngpp15")||player.mods.ngt?Decimal.pow(10, Math.pow(Math.log10(getEternitied()), 4.75)):1)
+	if(inOC()) return ret.pow(1/100)
+	return ret
 }
 
 function getEU3Mult() {
 	if (player.boughtDims) return player.timeShards.div(1e12).plus(1)
-	return Decimal.pow(2,300/Math.max(infchallengeTimes, player.achievements.includes("r112") ? 6.1 : 7.5))
+	return Decimal.pow(2+!!player.mods.ngt*8,300/Math.max(infchallengeTimes, player.achievements.includes("r112") ? 6.1 : 7.5))
 }
