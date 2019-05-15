@@ -87,16 +87,20 @@ function buyGalaxyUpgrade(i) {
 }
 
 function reduceDimCosts() {
-	if (player.galacticSacrifice) {
-		let div=1
-		if (player.achievements.includes("r21")) div=10
-		if (player.galacticSacrifice.upgrades.includes(11)) div=galUpgrade11()
-		for (d=1;d<9;d++) {
-			var name = TIER_NAMES[d]
-			player[name+"Cost"] = player[name+"Cost"].div(div)
-		}
-		if (player.achievements.includes('r48')) player.tickSpeedCost = player.tickSpeedCost.div(div)
+	let div=new Decimal(1)
+	if(player.mods.ngt) {
+		if(player.achievements.includes("ngt13")) div=div.multiply(1e308)
 	}
+	if (player.galacticSacrifice) {
+		if (player.achievements.includes("r21")) div=div.multiply(10)
+		if (player.galacticSacrifice.upgrades.includes(11)) div=div.multiply(galUpgrade11())
+	}
+	for (d=1;d<9;d++) {
+		var name = TIER_NAMES[d]
+		player[name+"Cost"] = player[name+"Cost"].div(div)
+	}
+	if (player.achievements.includes('r48') && player.galacticSacrifice) player.tickSpeedCost = player.tickSpeedCost.div(div)
+		
 	if (player.infinityUpgradesRespecced != undefined) {
 		for (d=1;d<9;d++) {
 			var name = TIER_NAMES[d]
@@ -183,12 +187,12 @@ function resetTotalBought() {
 }
 
 function productAllTotalBought () {
-	if (player.tickspeedBoosts!=undefined&&(player.currentChallenge=="challenge11"||player.currentChallenge=="postc1")) return 1
+	if ((player.currentChallenge == "challenge11" || player.currentChallenge == "postc1") && player.tickspeedBoosts != undefined) return 1
 	var ret = 1;
 	var mult = getProductBoughtMult()
 	for (i = 1; i <= 8; i++) {
-		if ((player.currentChallenge=="challenge13"||player.currentChallenge=="postc1")&&player.tickspeedBoosts!=undefined) ret *= Math.max(1+player[TIER_NAMES[i]+"Amount"].log10()*mult, 1);
-		else if (player.totalBoughtDims[TIER_NAMES[i]]) ret *= Math.max(player.totalBoughtDims[TIER_NAMES[i]] ? player.totalBoughtDims[TIER_NAMES[i]]*mult : 1, 1);
+		if (player.currentChallenge == "challenge13" && player.tickspeedBoosts != undefined) ret *= Math.max(1+player[TIER_NAMES[i]+"Amount"].log10()*mult, 1);
+		else if (player.totalBoughtDims[TIER_NAMES[i]]) ret = Decimal.times(ret, Math.max(player.totalBoughtDims[TIER_NAMES[i]] ? player.totalBoughtDims[TIER_NAMES[i]] * mult : 1, 1));
 	}
 	return ret;
 }
