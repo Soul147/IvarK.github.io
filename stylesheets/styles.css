@@ -160,6 +160,24 @@ button {
 	position: relative;
 }
 
+.omnichallengediv {
+	display:table;
+	text-align:center;
+	width: 300px;
+	height: 100px;
+	color: #f00;
+	background: #000;
+	font-weight: bold;
+	font-family: Typewriter;
+	border: 3px solid #f00;
+	border-radius: 10px;
+	font-size: 80%;
+	transition-duration: 0.2s;
+	padding: 2px;
+	margin: 3px 8px;
+	position: relative;
+}
+
 #pairedchallenges .quantumchallengediv { height: 90px }
 
 .completedchallengesbtn {
@@ -527,6 +545,14 @@ button {
     font-size: 11px
 }
 
+#omnibtn {
+	cursor: pointer;
+	top: 40px;
+	width: 250px;
+	height: 70px;
+    font-size: 11px
+}
+
 .dimtechdiv {
 	text-align: center;
 	width: 280px;
@@ -687,6 +713,22 @@ button {
     color: #0a640a;
 }
 
+.omnibtn {
+    color: #ff0000;
+    background: #000000 !important;
+    border: 2px solid #ff0000;
+    font-family: Typewriter;
+    font-weight: bold;
+    border-radius: 4px;
+    transition-duration: 0.2s;
+    cursor: pointer;
+}
+
+.omnibtn:hover {
+    background: #ff0000 !important;
+    color: #000000;
+}
+
 #galaxyPoints { color: #4169E1 !important; }
 
 .achievement {
@@ -821,7 +863,7 @@ button {
 }
 
 .loadmenu {
-	height: 320px;
+	height: 420px;
 	width: 450px;
 }
 
@@ -902,7 +944,6 @@ button {
     font-size: 16px;
     border-radius: 5px;
     text-align: center;
-    transition-duration: 0.1s;
 }
 
 #progresspercent {
@@ -912,6 +953,12 @@ button {
 
 .quantumProgress { background-color: #0a640a !important }
 .quantumProgress #progresspercent { color: #32c832 }
+
+.omniProgress#progressbar { 
+	background: #000000 !important; 
+	color: #ff0000 !important;
+	border: 1px outset #777;
+}
 
 .greedbtn {
     height: 40px;
@@ -1491,6 +1538,11 @@ button {
     background: white;
 }
 
+.dilationupgrebuyable:hover {
+    color: #64ddad;
+    background: white;
+}
+
 @keyframes glow {
     20% { text-shadow: 0 0 10px green; }
     100% { text-shadow: 0 0 10px white; }
@@ -1938,6 +1990,164 @@ br {
 	border-radius: 10px;
 }
 
+#produceQuarkCharge {
+	background: black !important;
+	border: 2px solid #4c4c4c;
+	width: 210px;
+	height: 90px;
+	color: #4c4c4c;
+	font-size: 12px;
+	animation: nanofieldanimation 5s infinite
+}
+
+#produceQuarkCharge:hover {
+	color: #727272;
+	text-shadow: 0px 0px 1px #4c4c4c, 0px 0px 2px #4c4c4c, 0px 0px 3px #4c4c4c;
+}
+
+.nanofieldreward {
+	background: black !important;
+	border: 1px solid #4c4c4c;
+	border-radius: 4px;
+    width: 250px;
+    height: 60px;
+	color: #727272;
+	text-shadow: 0px 0px 1px #4c4c4c, 0px 0px 2px #4c4c4c, 0px 0px 3px #4c4c4c;
+	font-size: 12px;
+    font-weight: bold;
+    font-family: Typewriter;
+	animation: nanofieldanimation 5s infinite;
+	transition-duration: 0.2s
+}
+
+.nanofieldrewardlocked {
+    background: #A3A3A3;
+    border: 1px solid #B84B5F;
+	border-radius: 4px;
+    width: 250px;
+    height: 60px;
+    color: #000000;
+	font-size: 12px;
+    font-weight: bold;
+    font-family: Typewriter;
+	transition-duration: 0.2s
+}
+
+.op {
+	color: black;
+	font-size: 35px;
+	text-shadow: 0px 0px 7px #ff0000
+}
+
+.omniupg {
+	background: #f00 !important;
+	opacity: 0;
+	border: 1px solid #4c0000;
+	border-radius: 4px;
+    width: 160px;
+    height: 80px;
+	color: #000;
+	text-shadow: 0px 0px 1px #4c0000, 0px 0px 2px #4c0000, 0px 0px 3px #4c0000;
+    font-weight: bold;
+    font-family: Typewriter;
+	animation: omnianimation 2s infinite;
+	position: absolute;
+	transition: background 0.2s, color 0.2s, opacity 2s;
+	transform: translate(-50%, -50%);
+    vertical-align: top;
+}
+
+.omniupgbought {
+	background: black !important;
+	opacity: 0;
+	border: 1px solid #4c0000;
+	border-radius: 4px;
+    width: 160px;
+    height: 80px;
+	color: #720000;
+	text-shadow: 0px 0px 1px #4c0000, 0px 0px 2px #4c0000, 0px 0px 3px #4c0000;
+    font-weight: bold;
+    font-family: Typewriter;
+	animation: omnianimation 2s infinite;
+	position: absolute;
+	transition: background 0.2s, color 0.2s, opacity 2s;
+	transform: translate(-50%, -50%);
+    vertical-align: top;
+}
+
+.omniupglocked, .omniupghidden {
+	background: black !important;
+	opacity: 0;
+	border: 1px solid #4c4c4c;
+	border-radius: 4px;
+    width: 160px;
+    height: 80px;
+	color: #727272;
+	text-shadow: 0px 0px 1px #4c4c4c, 0px 0px 2px #4c4c4c, 0px 0px 3px #4c4c4c;
+    font-weight: bold;
+    font-family: Typewriter;
+	animation: omnianimationgray 8s infinite;
+	position: absolute;
+	transition: background 0.2s, color 0.2s, opacity 2s;
+	transform: translate(-50%, -50%);
+    vertical-align: top;
+}
+
+.omniupglocked:hover, .omniupghidden:hover {
+    color: #1D1D1D;
+    background: #660000 !important;
+}
+
+.omniupghidden {
+	filter: blur(3px);
+}
+
+.omniupg:hover {
+    color: #f00;
+}
+
+.omnimilestone {
+	background: black !important;
+	border: 1px solid #4c0000;
+	border-radius: 4px;
+    width: 300px;
+    height: 60px;
+	color: #720000;
+	text-shadow: 0px 0px 1px #4c0000, 0px 0px 2px #4c0000, 0px 0px 3px #4c0000;
+	font-size: 12px;
+    font-weight: bold;
+    font-family: Typewriter;
+	animation: omnianimation 2s infinite;
+	transition-duration: 0.2s
+}
+
+.omnimilestonelocked {
+	background: black !important;
+	border: 1px solid #4c4c4c;
+	border-radius: 4px;
+    width: 300px;
+    height: 60px;
+	color: #727272;
+	text-shadow: 0px 0px 1px #4c4c4c, 0px 0px 2px #4c4c4c, 0px 0px 3px #4c4c4c;
+	font-size: 12px;
+    font-weight: bold;
+    font-family: Typewriter;
+	animation: omnianimationgray 8s infinite;
+	transition-duration: 0.2s
+}
+
+#gravitons {
+	font-size:35px;
+    color: #000 !important;
+    text-shadow: 0px 0px 7px #00ff00;
+}
+
+#gravitonEffect {
+	font-size:35px;
+    color: #000 !important;
+    text-shadow: 0px 0px 7px #00ff00;
+}
+
 @media print,
 screen and (max-width: 960px) {
     div.wrapper {
@@ -2209,4 +2419,21 @@ screen and (max-width: 480px) {
     0%  {box-shadow: inset 0px 0px 20px 0px #8e991e;}
     50% {box-shadow: inset 0px 0px 40px 0px #8e991e;}
     100% {box-shadow: inset 0px 0px 20px 0px #8e991e;}
+}
+@keyframes nanofieldanimation {
+    0%  {box-shadow: inset 0px 0px 90px 0px #4c4c4c;}
+    50% {box-shadow: inset 0px 0px 120px 0px #4c4c4c;}
+    100% {box-shadow: inset 0px 0px 90px 0px #4c4c4c;}
+}
+
+@keyframes omnianimation {
+    0%  {box-shadow: inset 0px 0px 20px 0px #4c0000;}
+    50% {box-shadow: inset 0px 0px 80px 0px #4c0000;}
+    100% {box-shadow: inset 0px 0px 20px 0px #4c0000;}
+}
+
+@keyframes omnianimationgray {
+    0%  {box-shadow: inset 0px 0px 20px 0px #4c4c4c;}
+    50% {box-shadow: inset 0px 0px 80px 0px #4c4c4c;}
+    100% {box-shadow: inset 0px 0px 20px 0px #4c4c4c;}
 }

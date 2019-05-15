@@ -1,5 +1,5 @@
 body {
-    background-image: url('../images/dark-bg.png');
+    background: black;
     background-position: center; 
 }
 
@@ -11,9 +11,9 @@ button {
 }
 
 .popup {
-    background-color: #455A64 !important;
+    background-color: #000 !important;
+	color: #fff !important;
     box-shadow: 0px 0px 15px 0px black !important;
-	color: #333 !important;
 }
 
 .achievementunlocked {
@@ -21,14 +21,15 @@ button {
 }
 
 .storebtn {
-    color: #E0E0E0;
-    background-color: #455A64 !important;
+    color: #fff;
+    background-color: #333 !important;
     border: 1px solid black;
     box-shadow: 0px 0px 7px 2px #111111;
 }
 
 .storebtn:hover {
-    background: #1B5E20 !important;
+    animation: textGlow 5s infinite;
+	background-color: #444 !important;
 }
 
 .newdim:hover {
@@ -56,13 +57,14 @@ button {
 }
 
 .infinitybtn {
-    color: #000 !important;
-    background: #F5F5F5 !important;
+    color: #ff9800 !important;
+    background: #000 !important;
     border: 2px solid #FF9800 !important;
 }
 
 .infinitybtn:hover {
     background: #FF9800 !important;
+    color: #000 !important;
 }
 
 .quantumbtn {
@@ -79,7 +81,7 @@ input {
 }
 
 #coinAmount {
-    animation: antimatterGlow 25s infinite;
+	text-shadow: 0px 0px 7px #f00;
 }
 
 #progressbar {
@@ -96,7 +98,7 @@ input {
 }
 
 .container {
-    color: #888888 !important;
+    color: #333 !important;
 }
 
 .challengesbtn {
@@ -117,21 +119,27 @@ input {
 }
 
 .tabbtn {
-    border: 2px solid #1565C0 !important;
+	transition-duration: 0.2s;
+	background: #000 !important;
+	border: 2px solid;
+    animation: buttonGlow 5s infinite;
+	color: #fff;
 }
 
 .tabbtn:hover {
-    background: #1565C0 !important;
-    color: black !important;
+    animation: buttonGlow 5s infinite, textGlow 5s infinite;
 }
 
 .secondarytabbtn:hover {
-    background: #1565C0 !important;
-    color: black !important;
+    animation: buttonGlow 5s infinite, textGlow 5s infinite;
 }
 
 .secondarytabbtn {
-    border: 2px solid #1565C0 !important;
+	transition-duration: 0.2s;
+	background: #000 !important;
+	border: 2px solid;
+    animation: buttonGlow 5s infinite;
+	color: #fff;
 }
 
 .challengediv {
@@ -159,12 +167,12 @@ input {
 }
 
 .IPAmount1 {
-    color: white !important;
+    color: #000 !important;
     text-shadow: 0px 0px 7px #fff;
 }
 
 .IPAmount2 {
-    color: white !important;
+    color: #000 !important;
     text-shadow: 0px 0px 7px #fff;
 }
 
@@ -173,11 +181,11 @@ input {
 }
 
 .unavailablebtn {
-    background: #37474F !important;
+    background: #222 !important;
 }
 
 .unavailablebtn:hover {
-    background: #B84B5F !important;
+    background: #500 !important;
 }
 
 .postinfcrunch {
@@ -253,38 +261,39 @@ input {
     border: 1px solid black !important;
 }
 
-.storebtn:hover {
-    color: #FFF !important;
+#infPowAmount {
+    color: #000 !important;
+    text-shadow: 0px 0px 7px #ff9800;
 }
 
-#infPowAmount {
-    color: white !important;
-    text-shadow: 0px 0px 7px #fff;
+#infPowEffectPower {
+    color: #000 !important;
+    text-shadow: 0px 0px 7px #ff9800;
 }
 
 #infDimMultAmount {
-    color: white !important;
-    text-shadow: 0px 0px 7px #fff;
+    color: #000 !important;
+    text-shadow: 0px 0px 7px #ff9800;
 }
 
 #timeShardAmount {
-    color: #64DD17 !important;
-    text-shadow: 0px 0px 7px #64DD17;
+    color: #000 !important;
+    text-shadow: 0px 0px 7px purple;
 }
 
 #tickThreshold {
-    color: #64DD17 !important;
-    text-shadow: 0px 0px 7px #64DD17;
+    color: #000 !important;
+    text-shadow: 0px 0px 7px purple;
 }
 
 #replicantiamount {
-    color: #03A9F4 !important;
-    text-shadow: 0px 0px 7px #03A9F4;
+    color: #000 !important;
+    text-shadow: 0px 0px 7px #fff;
 }
 
 #replicantimult {
-    color: #03A9F4 !important;
-    text-shadow: 0px 0px 7px #03A9F4;
+    color: #000 !important;
+    text-shadow: 0px 0px 7px #fff;
 }
 
 .eternitybtn {
@@ -294,8 +303,8 @@ input {
 }
 
 .eternitybtn:hover {
-    color: #511568 !important;
-    background: white !important;
+    color: #000 !important;
+    background: #b341e0 !important;
 }
 
 .eternitytabbtn {
@@ -305,8 +314,8 @@ input {
 }
 
 .eternitytabbtn:hover {
-    color: #511568 !important;
-    background: white !important;
+    color: #000 !important;
+    background: #b341e0 !important;
 }
 
 #eternityPoints1 {
@@ -584,9 +593,20 @@ input {
     color: #2682ca !important
 }
 
-@keyframes antimatterGlow {
-    0%  {color: #2196F3;}
-    33% {color: #673AB7;}
-    66%  {color: #00BCD4;}
-    100%  {color: #2196F3;}
+.ramount {
+    color: #000 !important;
+	font-size: 15px;
+    text-shadow: 0px 0px 7px #fff;
+}
+
+@keyframes textGlow {
+    0%  {color: #f00;}
+    50% {color: #600;}
+    100%  {color: #f00;}
+}
+
+@keyframes buttonGlow {
+    0%  {border-color: #666;}
+    50% {border-color: #333;}
+    100%  {border-color: #666;}
 }
