@@ -5,11 +5,13 @@
   <meta name="viewport" content="width=device-width">
   <title>Savefixer</title>
 </head>
-<body>
+<body bgcolor = "black" text = "#0f0">
   <input type="text" style="width: 80%;" id="brokenSave"></input>
-  <button onclick="fixSave()" style="display:block;">Fix this save</button>
+  <button onclick="fixSave()" style="display:block;">Fix Save</button>
   <br>
   <input type="text" style="width: 80%;" id="fixed"></input>
+  <br>
+  <span id = "devOutSpan" style = "display: none">This is read-only and should be used for testing purposes.<br><input id = "devOut" type = "text" style = "width: 80%"></input></span>
   <script src="savefixer.js"></script>
 </body>
 
